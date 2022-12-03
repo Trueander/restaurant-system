@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="side-nav">
+
+        <div class="logo">
+            <h2>LOGOCOMP</h2>
+            
+        </div>
+
+        <div class="side-nav-item" *ngFor="let route of app_routes" [routerLink]="[route.route]" routerLinkActive="active-route" >
+            <div [routerLink]="[route.route]" routerLinkActive="selected-route"></div>
+            <i [ngClass]="route.fontAwesomeIcon"></i>
+            <span>{{route.name}}</span>
+        </div>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

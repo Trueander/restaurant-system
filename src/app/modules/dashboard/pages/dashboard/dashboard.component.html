@@ -1,0 +1,55 @@
+<div class="container">
+    <h2 class="title">Overview</h2>
+    <div class="cards-wrapper">
+        <app-card-item [cardInfo]="cardInfo" *ngFor="let cardInfo of cardsInfo"></app-card-item>
+    </div>
+    <div class="chart-wrapper">
+        <div class="chart-item">
+            <div class="chart-title"><span>Orders</span></div>
+            <div class="chart">
+                <app-line-chart></app-line-chart>
+            </div>
+
+        </div>
+        <div class="chart-item">
+            <div class="chart-title"><span>Top Products</span></div>
+            <div class="chart-content">
+                <app-top-products-table></app-top-products-table>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="chart-wrapper">
+        <div class="table-top-customers">
+            <div class="table-title">
+                <span>Top Customers</span>
+            </div>
+            <app-top-customers-table></app-top-customers-table>
+        </div>
+        <div class="chart-item">
+            <div class="chart-title">
+                <span>Best Employeee</span>
+            </div>
+            <div class="chart-content">
+                <div class="best-employee-body">
+                    <h2>Anderson Bengolea</h2>
+                    <!-- <tui-badge
+                    status="success"
+                    value="Number of orders: 20"
+                    class="tui-space_right-2"
+                ></tui-badge> -->
+                <!-- <mat-chip-listbox aria-label="Fish selection">
+                    <mat-chip-option style="background-color: var(--success-color-hover)" selected>Number of orders</mat-chip-option>
+                  </mat-chip-listbox> -->
+                  <div class="employee-orders">
+                    Number of orders: 20
+                  </div>
+                </div>
+                <img src="../../../../../assets/congrats.svg" alt="">
+            </div>
+
+
+        </div>
+    </div>
+</div>

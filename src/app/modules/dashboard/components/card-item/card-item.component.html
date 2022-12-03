@@ -1,0 +1,21 @@
+<div class="card-item">
+    <div class="card-title">
+        <span>{{cardInfo.title}}</span>
+        <i [ngClass]="cardInfo.icon"></i>
+    </div>
+    <div class="card-body">
+        <span>{{cardInfo.value}}</span>
+    </div>
+    <div class="card-footer">
+        <div class="percentage" [ngClass]="cardInfo.isPositive ? 'success-color' : 'danger-color'">
+            <i class="fa-solid " [ngClass]="cardInfo.isPositive ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down'"></i>
+            <span class="percentage-value">
+                 <span *ngIf="cardInfo.isPositive">+</span> 
+                 <span *ngIf="!cardInfo.isPositive">-</span> 
+                 {{cardInfo.percentageValue}}%
+                </span>
+        </div>
+        <span class="extra-info">Since last month</span>
+    </div>
+
+</div>

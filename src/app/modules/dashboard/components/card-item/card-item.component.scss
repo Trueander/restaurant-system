@@ -1,0 +1,62 @@
+.card-item {
+    background-color: var(--secondary-background-color);  
+    box-shadow: 0 0.125rem 0.1875rem rgb(0 0 0 / 10%);
+    border-radius: 0.75rem;
+    height: 160px;
+    padding: 20px;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+
+    .card-title {
+        font-size: 1rem;
+        color: var(--muted-color);
+        display: flex;
+        justify-content: space-between;
+
+        i {
+            font-size: 2.2rem;
+        }
+    }
+
+    .card-body {
+        display: flex;
+        align-items: center;
+        
+        span {
+            font-size: 2.7rem;
+            color: var(--secondary-color);
+        }
+    }
+
+    .card-footer {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        .percentage {
+
+            font-size: 0.9rem;
+            i, .percentage-value {
+                margin-right: 10px;
+                font-weight: var(--secondary-text-bold);
+            }
+
+        }
+
+        .extra-info {
+            color: var(--muted-color);
+            font-size: 0.8rem;
+        }
+
+
+    }
+}
+
+
+.success-color {
+    color: var(--success-color-hover);
+}
+
+.danger-color {
+    color: var(--danger-color);
+}

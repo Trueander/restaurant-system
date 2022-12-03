@@ -1,0 +1,59 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+
+:root 
+{
+--primary-color: #326789;
+--secondary-color: #78A6C8;
+--success-color:  #3aa981;
+--success-color-hover:   #7ac5aa;
+--danger-color:  #fd697a;
+--danger-color-hover:  #fc5669;
+--primary-text-bold: 700;
+--secondary-text-bold: 600;
+--primary-background-color: #fafafa;
+--secondary-background-color: #fff;
+--muted-color: #6a6666;
+--border-color: #ededed;
+
+--border-radius-sidenav: 7px;
+
+--header-height: 80px;
+
+--table-light-background: #edf5fc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body { 
+    margin: 0;
+}
+
+html{
+	scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #d1d2d8;
+}
+
+html, body { 
+    min-height: 100vh;
+    height: auto;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.overlay-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: var(--border-radius-sidenav);
+}

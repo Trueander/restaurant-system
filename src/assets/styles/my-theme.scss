@@ -1,0 +1,123 @@
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary-color: (
+    50 : #e6edf1,
+    100 : #c2d1dc,
+    200 : #99b3c4,
+    300 : #7095ac,
+    400 : #517e9b,
+    500 : #326789,
+    600 : #2d5f81,
+    700 : #265476,
+    800 : #1f4a6c,
+    900 : #133959,
+    A100 : #92c9ff,
+    A200 : #5fafff,
+    A400 : #2c96ff,
+    A700 : #1389ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+$secondary-color: (
+    50 : #eff4f8,
+    100 : #d7e4ef,
+    200 : #bcd3e4,
+    300 : #a1c1d9,
+    400 : #8cb3d0,
+    500 : #78a6c8,
+    600 : #709ec2,
+    700 : #6595bb,
+    800 : #5b8bb4,
+    900 : #487ba7,
+    A100 : #ffffff,
+    A200 : #cee7ff,
+    A400 : #9bcfff,
+    A700 : #81c3ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$danger-color: (
+    50 : #ffedef,
+    100 : #fed2d7,
+    200 : #feb4bd,
+    300 : #fe96a2,
+    400 : #fd808e,
+    500 : #fd697a,
+    600 : #fd6172,
+    700 : #fc5667,
+    800 : #fc4c5d,
+    900 : #fc3b4a,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffe0e3,
+    A700 : #ffc7cb,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$my-primary: mat.define-palette($primary-color,500, 200, 800);
+$my-secondary: mat.define-palette($secondary-color, 700, 800, 900);
+$my-danger: mat.define-palette($danger-color, 900);
+// $my-palette-primary: mat.$primary-color;
+// $my-palette-secondary: mat.$secondary-color;
+// $my-palette-danger: mat.$danger-color;
+
+$my-theme: mat.define-light-theme((
+    color: (
+        primary: $my-primary,
+        accent: $my-secondary,
+        warn: $my-danger,
+    )
+));
+
+
+
+
+@include mat.all-component-themes($my-theme);
