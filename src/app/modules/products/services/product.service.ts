@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Category } from 'src/app/core/models/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+
+  private closeModal = new BehaviorSubject<Boolean>(false);
 
   constructor() { }
 
@@ -26,5 +29,13 @@ export class ProductService {
         id: '5', name:'Drinks', icon: 'fa-solid fa-martini-glass',
       }
       ];
+  }
+
+  sendCloseModal(){
+    this.closeModal.next(true);
+  }
+
+  getCloseModalValue(): Observable<Boolean> {
+    return this.closeModal.asObservable();
   }
 }

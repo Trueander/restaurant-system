@@ -1,0 +1,58 @@
+.container {
+    display: grid;
+    min-width: 40rem;
+    max-width: 60rem;
+    min-height: 620px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 20px 0;
+    position: relative;
+    
+}
+.drag-area {
+    width: 85%;
+    border: 2px dashed var(--secondary-color);
+    height: 85%;
+    margin: auto;
+    border-radius: var(--border-radius-sidenav);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .header {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--muted-color);
+    }
+
+    .support {
+        font-size: 0.8rem;
+        color: var(--muted-color);
+        margin-top: 10px;
+    }
+
+    .button {
+        color: var(--secondary-color);
+        cursor: pointer;
+    }
+
+    img {
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .error__message {
+        font-size: 0.8rem;
+        margin-top: 10px;
+        color: var(--danger-color);
+        font-weight: 400;
+    }
+}
+
+.close-button {
+    position: absolute;
+    right: 0;
+    margin-top: 7px;
+    margin-right: 7px;
+}

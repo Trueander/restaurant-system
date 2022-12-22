@@ -1,0 +1,18 @@
+<div class="container">
+    <button mat-icon-button class="close-button" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    <div class="drag-area" (dragover)="dragOverItem($event)"  (drop)="getFileFromDragAndDrop($event)" *ngIf="!file">
+        
+            <img src="../../../../../assets/add.svg">
+        
+
+        <span class="header">Drag & drop or <label for="file-input"><span class="button" >browse</span></label></span>
+        <input type="file" hidden id="file-input" (change)="getFileFromInput($event)">
+        <span class="support">Supports only xlsx files.</span>
+        <span class="error__message" *ngIf="errorMessageActive">This is not an xlsx file. Drop only xlxs files.</span>
+    </div>
+    <div class="file-products-wrapper" *ngIf="file">
+        {{file.name}}
+    </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="container" [formGroup]="productForm">
     <div class="form-container" >
-        <h2>Create a new product</h2>
+        <h3>Create a new product</h3>
         <div  class="form-content">
             
             <mat-form-field appearance="outline">
@@ -51,23 +51,32 @@
                 <mat-error *ngIf="imageUrl?.hasError('image')">Provide a valid link for the image.</mat-error>
             </mat-form-field>
 
-            <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+            <!-- <mat-radio-group aria-label="Select an option" formControlName="active" >
+                <mat-radio-button [value]="true">Active</mat-radio-button>
+                <mat-radio-button [value]="false">Disable</mat-radio-button>
+              </mat-radio-group> -->
+              <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+              <input hidden (change)="onFileSelected()" #fileInput type="file" id="file"> -->
 
+            <button class="action-button" mat-raised-button color="accent" [disabled]="productForm.invalid" (click)="createProduct()"><mat-icon>save</mat-icon>Create product</button>
+            <div class="buttons-group">
+                <button mat-stroked-button color="accent"><mat-icon>format_list_bulleted_add</mat-icon>Create more </button>
+                <button mat-stroked-button (click)="closeDialog()"><mat-icon>arrow_back</mat-icon>Cancel</button>
+            </div>
 
-
-            <button mat-raised-button color="accent" [disabled]="productForm.invalid"><mat-icon>save</mat-icon>Create product</button>
-            <!-- <button mat-stroked-button color="accent"><mat-icon>format_list_bulleted_add</mat-icon>Create more products</button> -->
-            <button mat-stroked-button><mat-icon>arrow_back</mat-icon>Cancel</button>
         </div>
     </div>
     <div class="feature-container">
-        <h4>Preview product's image</h4>
+        <h3>Preview product's image</h3>
         <div class="image-container">
             <img [src]="imageUrl?.value" #image [ngClass]="{'hide-image': !imageValidated}">
             
             <div class="image-not-loaded" *ngIf="!imageValidated">
                  Image not loaded
             </div>
+        </div>
+        <div class="image-svg">
+            <img src="../../../../../assets/add.svg">
         </div>
         
 
