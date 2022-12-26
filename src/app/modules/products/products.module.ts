@@ -7,6 +7,7 @@ import { ProductsTableComponent } from './components/products-table/products-tab
 import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { ProductFormDialogComponent } from './components/product-form-dialog/product-form-dialog.component';
 import { ImportProductsComponent } from './components/import-products/import-products.component';
+import { UpdateStockComponent } from './components/update-stock/update-stock.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ImportProductsComponent } from './components/import-products/import-pro
     ProductsComponent,
     ProductsTableComponent,
     ProductFormDialogComponent,
-    ImportProductsComponent
+    ImportProductsComponent,
+    UpdateStockComponent
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Category } from 'src/app/core/models/category';
 import { ImportProductsComponent } from '../../components/import-products/import-products.component';
 import { ProductFormDialogComponent } from '../../components/product-form-dialog/product-form-dialog.component';
+import { UpdateStockComponent } from '../../components/update-stock/update-stock.component';
 import { ProductService } from '../../services/product.service';
 
 
@@ -36,13 +37,21 @@ overlayRef!: OverlayRef;
     this.overlayRef.attach(dialogPortal);
 
     this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach())
-    
   }
 
   openImportProductsDialog() {
     this.overlayRef = this.createOverLayRef();
 
     const dialogPortal = new ComponentPortal(ImportProductsComponent);
+    this.overlayRef.attach(dialogPortal);
+    
+    this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach())
+  }
+
+  openUpdateStockDialog() {
+    this.overlayRef = this.createOverLayRef();
+
+    const dialogPortal = new ComponentPortal(UpdateStockComponent);
     this.overlayRef.attach(dialogPortal);
     
     this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach())

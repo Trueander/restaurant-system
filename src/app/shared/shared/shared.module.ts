@@ -15,6 +15,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 import {DialogModule} from '@angular/cdk/dialog';
 
@@ -32,7 +34,8 @@ const MaterialComponents = [
   MatPaginatorModule,
   DialogModule,
   MatSlideToggleModule,
-  MatRadioModule
+  MatRadioModule,
+  MatAutocompleteModule
 ];
 
 @NgModule({

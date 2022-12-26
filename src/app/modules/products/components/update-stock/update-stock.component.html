@@ -1,0 +1,22 @@
+<div class="container">
+    <h3>Update stock</h3>
+    <div class="filter-wrapper">
+      <form class="example-form">
+        <mat-form-field class="example-form-field" appearance="outline">
+            <mat-label>Search products</mat-label>
+            <input matInput type="text" [(ngModel)]="value" [formControl]="myControl" [matAutocomplete]="auto">
+            <button *ngIf="!value" matSuffix mat-icon-button (click)="value=''">
+              <mat-icon>search</mat-icon>
+            </button>
+            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+              </button>
+          </mat-form-field>
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let product of filteredOptions | async" [value]="product">
+              {{product}}
+            </mat-option>
+          </mat-autocomplete>
+      </form>
+    </div>
+</div>
