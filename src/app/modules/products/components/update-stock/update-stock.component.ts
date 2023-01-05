@@ -21,6 +21,8 @@ export class UpdateStockComponent {
 
   productForm!: FormGroup;
 
+  selectedProducts: Product[] = [];
+
   constructor(private fb: FormBuilder, private productService: ProductService) {}
 
   ngOnInit(): void {
@@ -33,18 +35,23 @@ export class UpdateStockComponent {
             this.filteredOptions = this.productService.filterByName(response);
           }
         })
+    console.log(this.productsArray)
   }
 
   selectOption(selectedProduct: MatAutocompleteSelectedEvent) {
     const product: Product = selectedProduct.option.value;
+
+    if(this.selectedProducts.find(p => p.id === product.id)) return
+
     this.productsArray.push(this.addProductFormGroup(product))
+    this.selectedProducts.push(product);
  }
 
   addProductFormGroup(product: Product): FormGroup{
     return this.fb.group({
       productId:[product.id, Validators.required],
       name: [product.name, Validators.required],
-      stock: [product.stock, Validators.required]
+      stock: [product.stock, [Validators.required, Validators.pattern('^[0-9]+[0-9]*$')]]
     })
   }
 
@@ -54,5 +61,14 @@ export class UpdateStockComponent {
 
   displayFn(product: Product): string {
     return product && product.name ? product.name : '';
+  }
+
+  closeDialog(): void {
+    this.productService.sendCloseModal();
+  }
+
+  removeItemFromProductArrayForm(index: number): void {
+    this.productsArray.removeAt(index);
+    this.selectedProducts = this.selectedProducts.filter((p, i) => i != index);
   }
 }

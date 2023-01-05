@@ -1,38 +1,63 @@
 <div class="container">
     <h3>Update stock</h3>
-    <div class="filter-wrapper">
-      <form class="example-form">
-        <mat-form-field class="example-form-field" appearance="outline">
-            <mat-label>Search products</mat-label>
-            <input matInput type="text" [(ngModel)]="value" [formControl]="myControl" [matAutocomplete]="auto">
-            <button *ngIf="!value" matSuffix mat-icon-button (click)="value=''">
-              <mat-icon>search</mat-icon>
-            </button>
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                <mat-icon>close</mat-icon>
+    <div class="content-wrapper">
+      <div class="filter-wrapper">
+        <form class="example-form">
+          <mat-form-field  appearance="outline">
+              <mat-label>Search products</mat-label>
+              <input matInput type="text" [(ngModel)]="value" [formControl]="myControl" [matAutocomplete]="auto">
+              <button *ngIf="!value" matSuffix mat-icon-button (click)="value=''">
+                <mat-icon>search</mat-icon>
               </button>
-          </mat-form-field>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='selectOption($event)'>
-            <mat-option *ngFor="let product of filteredOptions | async" [value]="product">
-              {{product.name}}
-            </mat-option>
-          </mat-autocomplete>
-      </form>
-    </div>
-    <div class="table-products">
-
-    <div [formGroup]="productForm">
-      <div formArrayName="products">
-        <div [formGroupName]="i" *ngFor="let product of productsArray.controls; let i = index">
-          <label>{{product.value.name}}</label>
-          <mat-form-field class="example-form-field" appearance="outline">
-            <mat-label>Stock</mat-label>
-            <input matInput type="text" formControlName="stock" >
-          </mat-form-field>
+              <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='selectOption($event)'>
+              <mat-option *ngFor="let product of filteredOptions | async" [value]="product">
+                {{product.name}}
+              </mat-option>
+            </mat-autocomplete>
+        </form>
+      </div>
+      <div [formGroup]="productForm" class="table-wrapper" *ngIf="productsArray.controls.length > 0">
+          <div class="header">
+            <div class="header-item">name</div>
+            <div class="header-item">stock</div>
+            <div class="header-item">delete</div>
+          </div>
+          <div class="body" formArrayName="products" >
+            <div class="body-item-wrapper" [formGroupName]="i" *ngFor="let product of productsArray.controls; let i = index">
+              <div class="item">
+                <span>{{product.value.name}}</span>
+              </div>
+              <div>
+                  <input type="text" formControlName="stock" 
+                  [ngClass]="{'error-input': productsArray.controls[i].get('stock')?.valid !== true}">
+              </div>
+              <div>
+                <button mat-icon-button color="warn" (click)="removeItemFromProductArrayForm(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="content-info" *ngIf="productsArray.controls.length == 0">
+        <div class="info">
+          <img src="../../../../../assets/plus.svg">
+          <span>Add products to update.</span>
         </div>
       </div>
+      <div class="action-buttons">
+        <button mat-stroked-button color="accent" (click)="closeDialog()">
+          Close
+        </button>
+        <button mat-raised-button color="primary" [disabled]="productForm.invalid" *ngIf="productsArray.controls.length > 0">
+          <mat-icon>edit</mat-icon>  Update
+        </button>
+      </div>
     </div>
-
-</div>
+    
     
 </div>
