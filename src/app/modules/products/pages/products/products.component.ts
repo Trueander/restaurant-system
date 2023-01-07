@@ -7,8 +7,6 @@ import { ProductFormDialogComponent } from '../../components/product-form-dialog
 import { UpdateStockComponent } from '../../components/update-stock/update-stock.component';
 import { ProductService } from '../../services/product.service';
 
-
-
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',

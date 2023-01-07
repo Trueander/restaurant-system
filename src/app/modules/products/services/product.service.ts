@@ -9,6 +9,7 @@ import { Product } from 'src/app/core/models/product';
 export class ProductService {
 
   private closeModal = new BehaviorSubject<Boolean>(false);
+  private products = new BehaviorSubject<Product[]>([]);
 
   constructor() { }
 
@@ -33,27 +34,55 @@ export class ProductService {
   }
 
   getProducts(): Product[] {
-    let products = [];
-    let producto = new Product();
-    producto.id = "1000"
-    producto.name = "Double hamburger"
-    producto.stock = 42
-    let producto1 = new Product();
-    producto1.id = "1001"
-    producto1.name = "Pizza"
-    producto1.stock = 34
-    let producto2 = new Product();
-    producto2.id = "1002"
-    producto2.name = "Inka Kola"
-    producto2.stock = 24
-    let producto3 = new Product();
-    producto3.id = "1003"
-    producto3.name = "Bisteak"
-    producto3.stock = 14
-    products.push(producto)
-    products.push(producto1)
-    products.push(producto2)
-    products.push(producto3)
+    let products: Product[] = [
+      {
+        id: '1',
+        name: `Double Burger`,
+        description: '',
+        price: 33,
+        createdAt: '2022-11-13',
+        stock: 4,
+        imageUrl: '',
+        active: true,
+        category: this.getCategories()[0]
+    },
+    {
+      id: '2',
+      name: `Special Pizza`,
+      description: '',
+      price: 33,
+      createdAt: '2022-11-13',
+      stock: 4,
+      imageUrl: '',
+      active: false,
+      category: this.getCategories()[0]
+  },
+  {
+    id: '3',
+    name: `Mix Burger`,
+    description: '',
+    price: 332222.33,
+    createdAt: '2022-11-13',
+    stock: 4,
+    imageUrl: '',
+    active: false,
+    category: this.getCategories()[0]
+  },
+  {
+    id: '4',
+    name: `Chicken Sandwich`,
+    description: '',
+    price: 33,
+    createdAt: '2022-11-13',
+    stock: 4,
+    imageUrl: '',
+    active: true,
+    category: this.getCategories()[0]
+  }
+    ];
+  
+  
+    this.products.next(products);
     return products;
   }
 
@@ -71,5 +100,13 @@ export class ProductService {
         return value.filter(p => p.name.includes(name))
       })
     );
+  }
+
+  set addProducts(product: Product) {
+    this.products.next([...this.getProducts(), product])
+  }
+
+  get listOfProducts(): Observable<Product[]> {
+    return this.products.asObservable();
   }
 }

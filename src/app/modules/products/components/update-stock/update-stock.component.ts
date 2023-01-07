@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { debounceTime, Observable } from 'rxjs';
@@ -29,7 +29,7 @@ export class UpdateStockComponent {
     this.productForm = this.fb.group({
       products: this.fb.array([])
     })
-    this.myControl.valueChanges.pipe(debounceTime(1000))
+    this.myControl.valueChanges.pipe(debounceTime(700))
         .subscribe(response => {
           if(typeof response === 'string' && response.trim().length > 0){
             this.filteredOptions = this.productService.filterByName(response);
@@ -71,4 +71,9 @@ export class UpdateStockComponent {
     this.productsArray.removeAt(index);
     this.selectedProducts = this.selectedProducts.filter((p, i) => i != index);
   }
+
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    this.closeDialog();
+  }
+
 }

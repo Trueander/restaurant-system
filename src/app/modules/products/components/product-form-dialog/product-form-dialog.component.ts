@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild, Output, EventEmitter  } from '@angular/core';
+import { Component, ElementRef, ViewChild, Output, EventEmitter, HostListener  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/core/models/category';
+import { Product } from 'src/app/core/models/product';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -52,13 +53,17 @@ export class ProductFormDialogComponent {
   }
 
   createProduct(): void {
-    console.log(this.productForm.value)
+    let product: Product = this.productForm.value;
+    console.log(product)
+    this.productService.getProducts().push(product)
   }
 
   closeDialog(): void {
     this.productService.sendCloseModal();
   }
 
-
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    this.closeDialog();
+  }
 
 }

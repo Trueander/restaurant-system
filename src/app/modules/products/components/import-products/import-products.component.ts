@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -53,5 +53,9 @@ export class ImportProductsComponent {
     }
     this.errorMessageActive = true;
     return false;
+  }
+
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    this.closeDialog();
   }
 }
