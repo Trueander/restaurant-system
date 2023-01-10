@@ -1,7 +1,7 @@
 <div class="container">
     <button mat-icon-button class="close-button" (click)="closeDialog()">
         <mat-icon>close</mat-icon>
-      </button>
+    </button>
     <div class="drag-area" (dragover)="dragOverItem($event)"  (drop)="getFileFromDragAndDrop($event)" *ngIf="!file">
         
             <img src="../../../../../assets/add.svg">
@@ -13,6 +13,23 @@
         <span class="error__message" *ngIf="errorMessageActive">This is not an xlsx file. Drop only xlxs files.</span>
     </div>
     <div class="file-products-wrapper" *ngIf="file">
-        {{file.name}}
+        
+        <div class="selected-file-info">
+            <div class="selected-file-wrapper">
+                <div class="delete-button" (click)="deleteFile()">
+                    x
+                </div>
+                <div class="text-file">{{file.name}}</div>
+                <button mat-stroked-button color="primary">
+                    <mat-icon>sync</mat-icon>
+                    Process file
+                </button>
+            </div>
+            <div class="progress-bar">
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>    
+                
+            
+        </div>
     </div>
 </div>

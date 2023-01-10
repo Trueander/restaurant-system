@@ -6,8 +6,9 @@
 .container {
     display: flex;
     width: 100%;
-    padding: 20px 30px;
-    
+    // padding: 20px 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     background-color: var(--primary-background-color);
 
     .logo {
@@ -21,13 +22,15 @@
 
     .content {
         width: calc(100% - 250px);
-        padding: 0 0 0 20px;
+        padding: 20px 0 0 20px;
         margin-left: auto;
         min-height: 100vh;
+        // margin-top: 20px;
     }
 
     .side-nav {
         width: 250px;
+        margin-top: 20px;
         border-radius: var(--border-radius-sidenav);
         background-color: var(--secondary-background-color);
         box-shadow: 0 0.125rem 1rem rgb(0 0 0 / 8%);

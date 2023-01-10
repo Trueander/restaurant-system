@@ -1,4 +1,6 @@
 import { Component, HostListener } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressBarMode } from '@angular/material/progress-bar';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -8,8 +10,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class ImportProductsComponent {
 
-  srcResult!: any;
-  file!: File;
+  file!: File | undefined;
 
   errorMessageActive: boolean = false;
 
@@ -57,5 +58,9 @@ export class ImportProductsComponent {
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.closeDialog();
+  }
+
+  deleteFile(): void {
+    this.file = undefined;
   }
 }

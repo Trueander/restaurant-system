@@ -50,18 +50,13 @@
                 <mat-error *ngIf="imageUrl?.hasError('required')">Image is required</mat-error>
                 <mat-error *ngIf="imageUrl?.hasError('image')">Provide a valid link for the image.</mat-error>
             </mat-form-field>
-
-            <!-- <mat-radio-group aria-label="Select an option" formControlName="active" >
-                <mat-radio-button [value]="true">Active</mat-radio-button>
-                <mat-radio-button [value]="false">Disable</mat-radio-button>
-              </mat-radio-group> -->
-              <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-              <input hidden (change)="onFileSelected()" #fileInput type="file" id="file"> -->
-
-            <button class="action-button" mat-raised-button color="accent" [disabled]="productForm.invalid" (click)="createProduct()"><mat-icon>save</mat-icon>Create product</button>
+           
             <div class="buttons-group">
-                <button mat-stroked-button color="accent"><mat-icon>format_list_bulleted_add</mat-icon>Create more </button>
-                <button mat-stroked-button (click)="closeDialog()"><mat-icon>arrow_back</mat-icon>Cancel</button>
+                <button mat-stroked-button (click)="closeDialog()">Close</button>
+                <button mat-stroked-button color="accent" [disabled]="productForm.invalid">Create more </button>
+                <button class="action-button" mat-raised-button color="accent" [disabled]="productForm.invalid" (click)="createProduct()">
+                    <mat-icon>save</mat-icon>Create
+                </button>
             </div>
 
         </div>

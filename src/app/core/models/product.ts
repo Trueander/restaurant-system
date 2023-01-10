@@ -10,4 +10,5 @@ export class Product {
     createdAt!: string;
     active!: boolean;
     category!: Category;
+    discount?: number;
 }
