@@ -20,12 +20,13 @@ export class ProductFormDialogComponent {
 
   @Output() closePanel = new EventEmitter<void>();
 
+  numRegex = /^[0-9]+(\.[0-9]\d{0,1})?$/;
 
   constructor(private fb: FormBuilder, 
     private productService: ProductService) {
     this.productForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      price: ['', [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*(\.[0-9]{0,2})?$')]],
+      price: ['', [Validators.required, Validators.pattern(this.numRegex)]],
       description: ['', Validators.required],
       stock: ['', [Validators.required, Validators.min(0)]],
       category: ['', Validators.required],
@@ -64,6 +65,14 @@ export class ProductFormDialogComponent {
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.closeDialog();
+  }
+
+  numberOnly(event: any): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
 }

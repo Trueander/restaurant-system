@@ -24,7 +24,7 @@
                 </mat-form-field>
                 <mat-form-field floatLabel="always" appearance="outline">
                     <mat-label>Stock</mat-label>
-                    <input class="numberInput" matInput type="number" formControlName="stock" placeholder="0">
+                    <input class="numberInput" matInput type="number" formControlName="stock" placeholder="0" (keypress)="numberOnly($event)">
                     <mat-error *ngIf="stock?.hasError('required')">Stock is required</mat-error>
                     <mat-error *ngIf="stock?.hasError('min')">Stock can't be negative</mat-error>
                 </mat-form-field>

@@ -5,6 +5,9 @@ import { HomeComponent } from './modules/home/pages/home/home.component';
 
 const appRoutes: Routes = [
   {
+    path: '', redirectTo: '/dashboard', pathMatch: 'full'
+  },
+  {
     path: '',
     component: HomeComponent,
     loadChildren: () => import(`./modules/home/home.module`).then(m => m.HomeModule)
