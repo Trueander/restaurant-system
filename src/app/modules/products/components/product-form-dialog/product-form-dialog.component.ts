@@ -55,8 +55,9 @@ export class ProductFormDialogComponent {
 
   createProduct(): void {
     let product: Product = this.productForm.value;
-    console.log(product)
-    this.productService.getProducts().push(product)
+    this.productService.createProduct(product)
+        .subscribe(console.log)
+    // this.productService.getProducts().push(product)
   }
 
   closeDialog(): void {

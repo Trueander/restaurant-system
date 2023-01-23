@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Category } from 'src/app/core/models/category';
 import { Product } from 'src/app/core/models/product';
 import { ProductService } from '../../services/product.service';
@@ -11,21 +12,33 @@ import { ProductService } from '../../services/product.service';
 export class ProductsTableComponent implements OnInit{
   columns: string[] = ['name', 'price', 'created', 'stock', 'category', 'status', 'actions']
 
-  page = 4;
-  size = 8;
+  page = 0;
+  size = 6;
 
   products: Product[] = [];
 
+  paginatorResult: any;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private productService: ProductService) {
-    
   }
 
   ngOnInit() {
-    this.productService.getProducts();
-    this.productService.listOfProducts.subscribe(response => {
-      console.log(response)
-      this.products = response;
-    })
+    this.getProducts(this.page);  
+  }
+
+  onPageChange(pageEvent: PageEvent): void {
+    this.getProducts(pageEvent.pageIndex);  
+  }
+
+  getProducts(page: number): void {
+    this.productService.getProductsPageable(page, this.size)
+        .subscribe(response => {
+          this.products = response.content as Product[];
+          this.paginatorResult = response;
+          console.log(this.products)
+        })
   }
 
 }

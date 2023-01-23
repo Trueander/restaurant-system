@@ -27,8 +27,8 @@
                 {{product.category.name}}
             </td>
             <td  style="text-align: center">
-                <div class="available" *ngIf="product.active">Available</div>
-                <div class="unavailable" *ngIf="!product.active">Unavailable</div>
+                <div class="available" *ngIf="product.isActive">Available</div>
+                <div class="unavailable" *ngIf="!product.isActive">Unavailable</div>
             </td>
             <td  style="text-align: center">
                 <button mat-icon-button color="accent">
@@ -39,9 +39,10 @@
         </tr>
     </tbody>
 </table>
-<mat-paginator [length]="100"
-[pageSize]="10"
+<mat-paginator *ngIf="paginatorResult" [length]="paginatorResult.totalElements"
+[pageSize]="size"
 [hidePageSize]="true"
 showFirstLastButtons="true"
+(page)="onPageChange($event)"
 aria-label="Select page">
 </mat-paginator>
