@@ -16,32 +16,31 @@
 
 
         <div class="table-filter">
+          <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select [(value)]="selectedCategoryId">
+              <mat-option>None</mat-option>
+              <mat-option [value]="category.categoryId" *ngFor="let category of categories">
+                <div class="selectWithIcon">
+                    <mat-icon aria-hidden="false" [fontIcon]="category.icon"></mat-icon>
+                    <div class="name">{{ category.name }}</div>
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
             <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>Search products</mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="!value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [formControl]="productNameFilterControl">
+                <button matSuffix mat-icon-button >
                   <mat-icon>search</mat-icon>
                 </button>
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                    <mat-icon>close</mat-icon>
-                  </button>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Select a category</mat-label>
-                <mat-select [(value)]="selected">
-                  <mat-option>None</mat-option>
-                  <mat-option [value]="category" *ngFor="let category of categories">
-                    <div class="selectWithIcon">
-                        <i [ngClass]="category.icon"></i>
-                        <div class="name">{{ category.name }}</div>
-                    </div>
-                  </mat-option>
-                </mat-select>
               </mat-form-field>
         </div>
+        <button *ngIf="productNameFilter.length > 0 || selectedCategoryId" mat-stroked-button class="clear-filter-button" color="primary" (click)="clearFilters()">
+          <mat-icon>backspace</mat-icon> Clear filters
+        </button>
 
-        <app-products-table></app-products-table>
+        <app-products-table [productName]="productNameFilter" [categoryId]="selectedCategoryId"></app-products-table>
     </div>
 
 </div>

@@ -1,6 +1,8 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { Category } from 'src/app/core/models/category';
 import { ImportProductsComponent } from '../../components/import-products/import-products.component';
 import { ProductFormDialogComponent } from '../../components/product-form-dialog/product-form-dialog.component';
@@ -13,8 +15,10 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-value = '';
-selected = 'option2';
+selectedCategoryId!: number | undefined;
+
+productNameFilterControl = new FormControl();
+productNameFilter: string = '';
 
 categories: readonly Category[] = [];
 
@@ -26,6 +30,10 @@ overlayRef!: OverlayRef;
 
   ngOnInit(): void {
     this.detachOverlayRef();
+
+    this.productNameFilterControl.valueChanges
+        .pipe(debounceTime(700))
+          .subscribe(value => this.productNameFilter = value);
   }
 
   openProductFormDialog() {
@@ -75,6 +83,9 @@ overlayRef!: OverlayRef;
         .centerVertically()
     });
   }
-  
 
+  clearFilters(): void {
+    this.productNameFilterControl.setValue('');
+    this.selectedCategoryId = undefined;
+  }
 }

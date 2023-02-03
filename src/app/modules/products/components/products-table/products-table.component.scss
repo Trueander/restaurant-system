@@ -1,12 +1,20 @@
 table {
     width: 100%;
+    margin-top: 15px;
+}
+
+.no-content {
+    padding: 20px;
+    background-color: var(--table-light-background);
+    width: 100%;
+    color: var(--muted-color);
+    text-align: center;
+    border-radius: var(--border-radius-sidenav);
 }
 
 th {
     font-weight: 500;
 }
-
-
 
 td, th {
     font-size: 0.85rem;

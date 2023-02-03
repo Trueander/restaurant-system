@@ -23,6 +23,16 @@ export class ProductService {
     return this.http.get<any>(`${this.baseUrlBackend}`,{params: params});
   }
 
+  filterProducts(page: number, size: number, productName: string, categoryId?: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.set('page', page);
+    params = params.set('size', size);
+    params = params.set('productName', productName);
+    if(categoryId !== undefined) params = params.set('categoryId', categoryId);
+
+    return this.http.get<any>(`${this.baseUrlBackend}/search`,{params: params});
+  }
+
   createProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(`${this.baseUrlBackend}`, product);
   }
@@ -30,19 +40,19 @@ export class ProductService {
   getCategories(): Category[] {
     return [
       {
-        categoryId: 1, name:'Main Plates', icon: 'fa-solid fa-plate-wheat',
+        categoryId: 1, name:'Main Course', icon: 'restaurant-menu',
       },
       {
-        categoryId: 2, name:'Desserts', icon: 'fa-solid fa-cake-candles',
+        categoryId: 2, name:'Desserts', icon: 'icecream',
       },
       {
-        categoryId: 3, name:'Hamburguers', icon: 'fa-solid fa-burger',
+        categoryId: 3, name:'Hamburguers', icon: 'lunch_dining',
       },
       {
-        categoryId: 4, name:'Pizzas', icon: 'fa-solid fa-pizza-slice',
+        categoryId: 4, name:'Pizzas', icon: 'local_pizza',
       },
       {
-        categoryId: 5, name:'Drinks', icon: 'fa-solid fa-martini-glass',
+        categoryId: 5, name:'Drinks', icon: 'local_bar',
       }
       ];
   }

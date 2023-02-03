@@ -10,39 +10,48 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products; let index = index">
-            <td >
-                {{product.name}}
-            </td>
-            <td >
-                S/. {{product.price}}
-            </td>
-            <td >
-                {{product.createdAt}}
-            </td>
-            <td >
-                {{product.stock}}
-            </td>
-            <td style="text-align: center">
-                {{product.category.name}}
-            </td>
-            <td  style="text-align: center">
-                <div class="available" *ngIf="product.isActive">Available</div>
-                <div class="unavailable" *ngIf="!product.isActive">Unavailable</div>
-            </td>
-            <td  style="text-align: center">
-                <button mat-icon-button color="accent">
-                    <mat-icon>edit</mat-icon>
-                </button>
+        <ng-template [ngIf]="products.length>0">
+            <tr *ngFor="let product of products; let index = index">
+                <td >
+                    {{product.name}}
+                </td>
+                <td >
+                    S/. {{product.price}}
+                </td>
+                <td >
+                    {{product.stock}}
+                </td>
+                <td>
+                    {{product.category.name}}
+                </td>
+                <td  style="text-align: center">
+                    <div class="available" *ngIf="product.isActive">Available</div>
+                    <div class="unavailable" *ngIf="!product.isActive">Unavailable</div>
+                </td>
+                <td  style="text-align: center">
+                    <button mat-icon-button color="accent">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+    
+                </td>
+            </tr>
+        </ng-template>
 
-            </td>
-        </tr>
     </tbody>
 </table>
+<ng-template [ngIf]="products.length == 0">
+    <div class="no-content">
+        <div>
+            <img src="../../../../../assets/search.svg" alt="search" width="200px" height="200px">
+        </div>
+        <span *ngIf="productName && productName.length > 0">No products found for '{{productName}}'</span>
+        <span *ngIf="productName.length == 0">No products to display. Create products.</span>
+
+    </div>
+</ng-template>
 <mat-paginator *ngIf="paginatorResult" [length]="paginatorResult.totalElements"
 [pageSize]="size"
-[hidePageSize]="true"
+[hidePageSize]="false"
 showFirstLastButtons="true"
-(page)="onPageChange($event)"
-aria-label="Select page">
+(page)="onPageChange($event)">
 </mat-paginator>
