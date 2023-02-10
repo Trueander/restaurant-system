@@ -1,15 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
-import { Category } from 'src/app/core/models/category';
 import { Product } from 'src/app/core/models/product';
+import { ProductRegistrationRequest } from 'src/app/core/models/product-registration-request';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private baseUrlBackend: string = 'http://localhost:8080/api/products';
+  private baseUrlBackend: string = `${environment.URL_BACKEND}/api/products`;
 
   private closeModal = new BehaviorSubject<Boolean>(false);
   private products = new BehaviorSubject<Product[]>([]);
@@ -33,33 +34,16 @@ export class ProductService {
     return this.http.get<any>(`${this.baseUrlBackend}/search`,{params: params});
   }
 
-  createProduct(product: Product): Observable<Product> {
+  createProduct(product: ProductRegistrationRequest): Observable<Product> {
     return this.http.post<Product>(`${this.baseUrlBackend}`, product);
   }
 
-  getCategories(): Category[] {
-    return [
-      {
-        categoryId: 1, name:'Main Course', icon: 'restaurant-menu',
-      },
-      {
-        categoryId: 2, name:'Desserts', icon: 'icecream',
-      },
-      {
-        categoryId: 3, name:'Hamburguers', icon: 'lunch_dining',
-      },
-      {
-        categoryId: 4, name:'Pizzas', icon: 'local_pizza',
-      },
-      {
-        categoryId: 5, name:'Drinks', icon: 'local_bar',
-      }
-      ];
+  updateProduct(productId: number, product: ProductRegistrationRequest): Observable<Product> {
+    return this.http.put<Product>(`${this.baseUrlBackend}/${productId}`, product);
   }
 
-  getProducts(): Product[] {
-    let products: Product[] = []
-    return products;
+  getProduct(productId: number): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrlBackend}/${productId}`);
   }
 
   sendCloseModal(){
@@ -70,19 +54,4 @@ export class ProductService {
     return this.closeModal.asObservable();
   }
 
-  filterByName(name: string): Observable<Product[]> {
-    return of(this.getProducts()).pipe(
-      map(value => {
-        return value.filter(p => p.name.includes(name))
-      })
-    );
-  }
-
-  set addProducts(product: Product) {
-    this.products.next([...this.getProducts(), product])
-  }
-
-  get listOfProducts(): Observable<Product[]> {
-    return this.products.asObservable();
-  }
 }

@@ -29,7 +29,7 @@
                     <div class="unavailable" *ngIf="!product.isActive">Unavailable</div>
                 </td>
                 <td  style="text-align: center">
-                    <button mat-icon-button color="accent">
+                    <button mat-icon-button color="accent" (click)="openProductFormDialog(product.productId)">
                         <mat-icon>edit</mat-icon>
                     </button>
     

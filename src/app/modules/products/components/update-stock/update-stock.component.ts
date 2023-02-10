@@ -32,7 +32,7 @@ export class UpdateStockComponent {
     this.myControl.valueChanges.pipe(debounceTime(700))
         .subscribe(response => {
           if(typeof response === 'string' && response.trim().length > 0){
-            this.filteredOptions = this.productService.filterByName(response);
+            // this.filteredOptions = this.productService.filterByName(response);
           }
         })
     console.log(this.productsArray)
@@ -41,7 +41,7 @@ export class UpdateStockComponent {
   selectOption(selectedProduct: MatAutocompleteSelectedEvent) {
     const product: Product = selectedProduct.option.value;
 
-    if(this.selectedProducts.find(p => p.id === product.id)) return
+    if(this.selectedProducts.find(p => p.productId === product.productId)) return
 
     this.productsArray.push(this.addProductFormGroup(product))
     this.selectedProducts.push(product);
@@ -49,7 +49,7 @@ export class UpdateStockComponent {
 
   addProductFormGroup(product: Product): FormGroup{
     return this.fb.group({
-      productId:[product.id, Validators.required],
+      productId:[product.productId, Validators.required],
       name: [product.name, Validators.required],
       stock: [product.stock, [Validators.required, Validators.pattern('^[0-9]+[0-9]*$')]]
     })

@@ -32,16 +32,16 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>Select a category</mat-label>
-                <mat-select [(value)]="selected" formControlName="category">
+                <mat-select formControlName="categoryId">
                   <mat-option>None</mat-option>
-                  <mat-option [value]="category" *ngFor="let category of categories">
+                  <mat-option [value]="category.categoryId" *ngFor="let category of categories">
                     <div class="selectWithIcon">
-                        <i [ngClass]="category.icon"></i>
+                        <mat-icon aria-hidden="false" [fontIcon]="category.icon"></mat-icon>
                         <div class="name">{{ category.name }}</div>
                     </div>
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="category?.hasError('required')">Category is required</mat-error>
+                <mat-error *ngIf="categoryId?.hasError('required')">Category is required</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -54,11 +54,16 @@
             <div class="buttons-group">
                 <button mat-stroked-button (click)="closeDialog()">Close</button>
                 <button mat-stroked-button color="accent" [disabled]="productForm.invalid">Create more </button>
-                <button class="action-button" mat-raised-button color="accent" [disabled]="productForm.invalid" (click)="createProduct()">
-                    <mat-icon>save</mat-icon>Create
+                <button *ngIf="!productIdToUpdate" class="action-button" mat-raised-button color="primary"
+                 [disabled]="productForm.invalid" (click)="createProduct()">
+                    <mat-icon>save</mat-icon>Save
+                </button>
+                <button *ngIf="productIdToUpdate" class="action-button" mat-raised-button color="primary"
+                 [disabled]="productForm.invalid" (click)="updateProduct()">
+                    <mat-icon>save</mat-icon>Save
                 </button>
             </div>
-
+            
         </div>
     </div>
     <div class="feature-container">

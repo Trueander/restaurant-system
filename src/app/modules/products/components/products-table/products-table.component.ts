@@ -1,7 +1,10 @@
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Product } from 'src/app/core/models/product';
 import { ProductService } from '../../services/product.service';
+import { ProductFormDialogComponent } from '../product-form-dialog/product-form-dialog.component';
 
 @Component({
   selector: 'app-products-table',
@@ -26,10 +29,14 @@ export class ProductsTableComponent implements OnInit, OnChanges{
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private productService: ProductService) {
+  overlayRef!: OverlayRef;
+
+  constructor(private productService: ProductService,
+    private overlay: Overlay) {
   }
 
   ngOnInit() {
+    this.detachOverlayRef();
     this.getProducts(this.page);
   }
 
@@ -87,4 +94,52 @@ export class ProductsTableComponent implements OnInit, OnChanges{
     this.products = response.content as Product[];
     this.paginatorResult = response;
   }
+
+  openProductFormDialog(productIdToUpdate?: number) {
+    this.overlayRef = this.createOverLayRef();
+
+    const dialogPortal = new ComponentPortal(ProductFormDialogComponent);
+    const componentRef = this.overlayRef.attach(dialogPortal);
+
+    if(productIdToUpdate) componentRef.instance.productIdToUpdate = productIdToUpdate;
+
+    componentRef.instance.updatedProductEmitter
+                .subscribe(response => {
+                  this.products = this.products.map(prod => {
+                    if(prod.productId == response.productId) {
+                      prod = response;
+                      return prod;
+                    }
+                    return prod;
+                  })
+                })
+
+    this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach());
+  }
+
+  createOverLayRef(): OverlayRef {
+    return this.overlay.create({
+      hasBackdrop: true,
+      panelClass: 'overlay-panel',
+      positionStrategy: this.overlay
+        .position()
+        .global()
+        .centerHorizontally()
+        .centerVertically()
+    });
+  }
+
+  detachOverlayRef(): void {
+      this.productService.getCloseModalValue()
+          .subscribe
+          ((value: Boolean) => {
+            if(value && this.overlayRef) {
+              this.overlayRef.detach()
+            }
+        })
+    }
+  
+
+
 }
+

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { Category } from 'src/app/core/models/category';
+import { CategoryService } from 'src/app/modules/categories/services/category.service';
 import { ImportProductsComponent } from '../../components/import-products/import-products.component';
 import { ProductFormDialogComponent } from '../../components/product-form-dialog/product-form-dialog.component';
 import { UpdateStockComponent } from '../../components/update-stock/update-stock.component';
@@ -24,8 +25,11 @@ categories: readonly Category[] = [];
 
 overlayRef!: OverlayRef;
 
-  constructor(private overlay: Overlay, private productService: ProductService) {
-    this.categories = productService.getCategories();
+  constructor(private overlay: Overlay, 
+    private productService: ProductService,
+    private categoryService: CategoryService) {
+    this.categoryService.getCategories()
+        .subscribe(response => this.categories = response); 
   }
 
   ngOnInit(): void {
@@ -36,11 +40,13 @@ overlayRef!: OverlayRef;
           .subscribe(value => this.productNameFilter = value);
   }
 
-  openProductFormDialog() {
+  openProductFormDialog(productIdToUpdate?: number) {
     this.overlayRef = this.createOverLayRef();
 
     const dialogPortal = new ComponentPortal(ProductFormDialogComponent);
-    this.overlayRef.attach(dialogPortal);
+    const componentRef = this.overlayRef.attach(dialogPortal);
+
+    if(productIdToUpdate) componentRef.instance.productIdToUpdate = productIdToUpdate;
 
     this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach())
   }
@@ -65,8 +71,9 @@ overlayRef!: OverlayRef;
 
   detachOverlayRef(): void {
     this.productService.getCloseModalValue()
-        .subscribe((value: Boolean) => {
-          if(value) {
+        .subscribe
+        ((value: Boolean) => {
+          if(value && this.overlayRef) {
             this.overlayRef.detach()
           }
     })
