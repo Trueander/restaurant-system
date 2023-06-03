@@ -37,7 +37,11 @@ overlayRef!: OverlayRef;
 
     this.productNameFilterControl.valueChanges
         .pipe(debounceTime(700))
-          .subscribe(value => this.productNameFilter = value);
+          .subscribe(value => {
+            if(value !== null) {
+              this.productNameFilter = value;
+            }
+          });
   }
 
   openProductFormDialog(productIdToUpdate?: number) {
@@ -92,7 +96,8 @@ overlayRef!: OverlayRef;
   }
 
   clearFilters(): void {
-    this.productNameFilterControl.setValue('');
+    this.productNameFilterControl.setValue(null);
+    this.productNameFilter = '';
     this.selectedCategoryId = undefined;
   }
 }

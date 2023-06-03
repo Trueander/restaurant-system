@@ -1,8 +1,10 @@
 import { Component, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Router } from '@angular/router';
 import { debounceTime, Observable } from 'rxjs';
 import { Product } from 'src/app/core/models/product';
+import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -23,7 +25,9 @@ export class UpdateStockComponent {
 
   selectedProducts: Product[] = [];
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {}
+  constructor(private fb: FormBuilder, 
+    private productService: ProductService,
+    private sweetAlertService: SweetAlertService) {}
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
@@ -31,11 +35,10 @@ export class UpdateStockComponent {
     })
     this.myControl.valueChanges.pipe(debounceTime(700))
         .subscribe(response => {
-          if(typeof response === 'string' && response.trim().length > 0){
-            // this.filteredOptions = this.productService.filterByName(response);
+          if(typeof response === 'string' && response.trim().length > 2){
+            this.filteredOptions = this.productService.getProductsFilterByName(response);
           }
         })
-    console.log(this.productsArray)
   }
 
   selectOption(selectedProduct: MatAutocompleteSelectedEvent) {
@@ -65,6 +68,17 @@ export class UpdateStockComponent {
 
   closeDialog(): void {
     this.productService.sendCloseModal();
+  }
+
+  updateProductsStock(): void {
+    this.productService.updateProductsStock(this.productsArray.value)
+        .subscribe({
+          next: () => {
+            this.sweetAlertService.successAlert('Stock updated successfully');
+            this.closeDialog();
+          },
+          error: () => this.sweetAlertService.errorAlert('Something went wrong, please try again')
+        });
   }
 
   removeItemFromProductArrayForm(index: number): void {

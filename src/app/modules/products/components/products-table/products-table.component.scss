@@ -1,6 +1,7 @@
 table {
     width: 100%;
     margin-top: 15px;
+    border-collapse: collapse;
 }
 
 .no-content {
@@ -22,7 +23,7 @@ td, th {
     text-align: start;
     white-space: nowrap;
     border-right-color: var(--muted-color);
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 1rem;
     border-radius: 0.3rem;
  
     &:last-child {
@@ -39,18 +40,18 @@ tr:nth-child(even) td {
 }
 
 .available, .unavailable {
-
     padding: 5px 13px;
     border-radius: 15px;
     display: inline-block;
+    color: #fff;
 }
 
 .available {
-    background-color: #e9f8f3;
+    background-color: var(--success-color);
 }
 
 .unavailable {
-    background-color: #f6e3dc;
+    background-color: var(--danger-color);
 }
 
 mat-paginator {

@@ -1,6 +1,7 @@
 <div class="container" [formGroup]="productForm">
     <div class="form-container" >
-        <h3>Create a new product</h3>
+        <h3 *ngIf="!productIdToUpdate">Create a new product</h3>
+        <h3 *ngIf="productIdToUpdate">Update product</h3>
         <div  class="form-content">
             
             <mat-form-field appearance="outline">

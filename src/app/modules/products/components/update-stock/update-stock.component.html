@@ -53,7 +53,7 @@
         <button mat-stroked-button color="accent" (click)="closeDialog()">
           Close
         </button>
-        <button mat-raised-button color="primary" [disabled]="productForm.invalid" *ngIf="productsArray.controls.length > 0">
+        <button mat-raised-button color="primary" (click)="updateProductsStock()" [disabled]="productForm.invalid" *ngIf="productsArray.controls.length > 0">
           <mat-icon>edit</mat-icon>  Update
         </button>
       </div>

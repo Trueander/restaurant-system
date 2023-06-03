@@ -128,18 +128,3 @@ h3 {
     margin-top: 0;
 }
 
-.error-input {
-        &[type=text] {
-            outline: 0;
-            border-width: 0;
-            border: 1px solid var(--danger-color) !important;
-            border-radius: 4px;
-            &:focus {
-                outline: 0;
-                border-width: 0;
-                border: 0.125rem solid var(--danger-color) !important;
-            }
-    
-        }
-
-}

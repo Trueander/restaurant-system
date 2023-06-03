@@ -1,35 +1,90 @@
-<div class="container">
+<div class="container" [ngStyle]="{'width': importedProducts.length > 0 ? '75rem': '35rem'}">
     <button mat-icon-button class="close-button" (click)="closeDialog()">
         <mat-icon>close</mat-icon>
     </button>
     <div class="drag-area" (dragover)="dragOverItem($event)"  (drop)="getFileFromDragAndDrop($event)" *ngIf="!file">
-        
             <img src="../../../../../assets/add.svg">
-        
-
         <span class="header">Drag & drop or <label for="file-input"><span class="button" >browse</span></label></span>
         <input type="file" hidden id="file-input" (change)="getFileFromInput($event)">
         <span class="support">Supports only xlsx files.</span>
         <span class="error__message" *ngIf="errorMessageActive">This is not an xlsx file. Drop only xlxs files.</span>
     </div>
-    <div class="file-products-wrapper" *ngIf="file">
+    <ng-container *ngIf="file && importedProducts.length === 0">
+        <div class="file-products-wrapper">
         
-        <div class="selected-file-info">
-            <div class="selected-file-wrapper">
-                <div class="delete-button" (click)="deleteFile()">
-                    x
+            <div class="selected-file-info">
+                <div class="selected-file-wrapper">
+                    <div class="delete-button" (click)="deleteFile()">
+                        x
+                    </div>
+                    <div class="text-file">{{file.name}}</div>
+                    <button mat-stroked-button color="primary" (click)="importProducts()">
+                        <mat-icon>sync</mat-icon>
+                        Process file
+                    </button>
                 </div>
-                <div class="text-file">{{file.name}}</div>
-                <button mat-stroked-button color="primary">
-                    <mat-icon>sync</mat-icon>
-                    Process file
+                <ng-container *ngIf="progressBarActive">
+                    <div class="progress-bar">
+                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="importedProducts.length > 0">
+        <div [formGroup]="productForm" class="table-wrapper" >
+            <h3>Imported products</h3>
+            <div class="header">
+              <div class="header-item">name</div>
+              <div class="header-item">description</div>
+              <div class="header-item">price</div>
+              <div class="header-item">stock</div>
+              <div class="header-item">imageUrl</div>
+              <div class="header-item">category</div>
+              <div class="header-item">delete</div>
+            </div>
+            <div class="body" formArrayName="products" >
+              <div class="body-item-wrapper" [formGroupName]="i" *ngFor="let product of productsArray.controls; let i = index">
+                <div>
+                    <input type="text" formControlName="name" 
+                    [ngClass]="{'error-input': productsArray.controls[i].get('name')?.valid !== true}">
+                </div>
+                <div>
+                    <input type="text" formControlName="description" 
+                    [ngClass]="{'error-input': productsArray.controls[i].get('description')?.valid !== true}">
+                </div>
+                <div>
+                    <input type="text" formControlName="price" class="text-center"
+                    [ngClass]="{'error-input': productsArray.controls[i].get('price')?.valid !== true}">
+                </div>
+                <div>
+                    <input type="text" formControlName="stock" class="text-center"
+                    [ngClass]="{'error-input': productsArray.controls[i].get('stock')?.valid !== true}">
+                </div>
+                <div>
+                    <input type="text" formControlName="imageUrl" 
+                    [ngClass]="{'error-input': productsArray.controls[i].get('imageUrl')?.valid !== true}">
+                </div>
+
+                <div>
+                    <select name="select" formControlName="categoryId">
+                        <option [value]="undefined">Select a category</option>
+                        <option [value]="category.categoryId" *ngFor="let category of categories">{{ category.name }}</option>
+                      </select>
+                </div>
+                <div>
+                  <button mat-icon-button color="warn" (click)="removeItemFromProductArrayForm(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div>
+                <button class="action-button float-right m-top-10" mat-raised-button color="primary" (click)="createProducts()"
+                 [disabled]="productForm.invalid">
+                    <mat-icon>save</mat-icon>Save products
                 </button>
             </div>
-            <div class="progress-bar">
-                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-            </div>    
-                
-            
         </div>
-    </div>
+    </ng-container>
 </div>

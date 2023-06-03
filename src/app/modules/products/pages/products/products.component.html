@@ -36,7 +36,7 @@
                 </button>
               </mat-form-field>
         </div>
-        <button *ngIf="productNameFilter.length > 0 || selectedCategoryId" mat-stroked-button class="clear-filter-button" color="primary" (click)="clearFilters()">
+        <button *ngIf="(productNameFilter && productNameFilter.length > 0) || selectedCategoryId" mat-stroked-button class="clear-filter-button" color="primary" (click)="clearFilters()">
           <mat-icon>backspace</mat-icon> Clear filters
         </button>
 

@@ -5,6 +5,7 @@ import { Product } from 'src/app/core/models/product';
 import { ProductRegistrationRequest } from 'src/app/core/models/product-registration-request';
 import { ProductUpdateRequest } from 'src/app/core/models/product-update-request';
 import { CategoryService } from 'src/app/modules/categories/services/category.service';
+import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class ProductFormDialogComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
     private productService: ProductService,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    private sweetAlertService: SweetAlertService) {
 
   }
   ngOnInit(): void {
@@ -61,6 +63,7 @@ export class ProductFormDialogComponent implements OnInit {
     let product: ProductRegistrationRequest = this.productForm.value;
     this.productService.createProduct(product)
         .subscribe(() => {
+          this.sweetAlertService.successAlert('Product created successfully');
           this.closeDialog();
         })
   }
@@ -69,6 +72,7 @@ export class ProductFormDialogComponent implements OnInit {
     let product: ProductUpdateRequest = this.productForm.value;
     this.productService.updateProduct(this.productIdToUpdate, product)
         .subscribe(response => {
+          this.sweetAlertService.successAlert('Product updated successfully');
           this.updatedProductEmitter.next(response);
           this.closeDialog();
         });
@@ -92,13 +96,13 @@ export class ProductFormDialogComponent implements OnInit {
 
   loadProductForm(): void {
     this.productForm = this.fb.group({
-      productId: [''],
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      price: ['', [Validators.required, Validators.pattern(this.numRegex)]],
-      description: ['', Validators.required],
-      stock: ['', [Validators.required, Validators.min(0)]],
-      categoryId: ['', Validators.required],
-      imageUrl: ['', [Validators.required, Validators.maxLength(255)]],
+      productId: [null],
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      price: [null, [Validators.required, Validators.pattern(this.numRegex)]],
+      description: [null, [Validators.required, Validators.maxLength(255)]],
+      stock: [null, [Validators.required, Validators.min(0)]],
+      categoryId: [null, Validators.required],
+      imageUrl: [null, [Validators.required, Validators.maxLength(255)]],
     })
   }
 

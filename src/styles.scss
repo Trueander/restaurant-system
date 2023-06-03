@@ -14,6 +14,7 @@
 --secondary-background-color: #fff;
 --muted-color: #6a6666;
 --border-color: #ededed;
+--warning-color: #ffc107;
 
 --border-radius-sidenav: 7px;
 
@@ -56,4 +57,212 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     flex-direction: column;
     background-color: #fff;
     border-radius: var(--border-radius-sidenav);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.float-right {
+    float: right;
+}
+
+.m-right-5 {
+    margin-right: 5px;
+}
+
+.m-right-10 {
+    margin-right: 10px;
+}
+
+.m-right-15 {
+    margin-right: 15px;
+}
+
+.m-right-20 {
+    margin-right: 20px;
+}
+
+.m-right-25 {
+    margin-right: 25px;
+}
+
+.m-left-5 {
+    margin-left: 5px;
+}
+
+.m-left-10 {
+    margin-left: 10px;
+}
+
+.m-left-15 {
+    margin-left: 15px;
+}
+
+.m-left-20 {
+    margin-left: 20px;
+}
+
+.m-left-25 {
+    margin-left: 25px;
+}
+
+.m-top-5 {
+    margin-top: 5px;
+}
+
+.m-top-10 {
+    margin-top: 10px;
+}
+
+.m-top-15 {
+    margin-top: 15px;
+}
+
+.m-top-20 {
+    margin-top: 20px;
+}
+
+.m-top-25 {
+    margin-top: 25px;
+}
+
+.m-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.m-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.m-bottom-15 {
+    margin-bottom: 15px;
+}
+
+.m-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.m-bottom-25 {
+    margin-bottom: 25px;
+}
+
+.p-right-5 {
+    padding-right: 5px;
+}
+
+.p-right-10 {
+    padding-right: 10px;
+}
+
+.p-right-15 {
+    padding-right: 15px;
+}
+
+.p-right-20 {
+    padding-right: 20px;
+}
+
+.p-right-25 {
+    padding-right: 25px;
+}
+
+.p-left-5 {
+    padding-left: 5px;
+}
+
+.p-left-10 {
+    padding-left: 10px;
+}
+
+.p-left-15 {
+    padding-left: 15px;
+}
+
+.p-left-20 {
+    padding-left: 20px;
+}
+
+.p-left-25 {
+    padding-left: 25px;
+}
+
+.p-top-5 {
+    padding-top: 5px;
+}
+
+.p-top-10 {
+    padding-top: 10px;
+}
+
+.p-top-15 {
+    padding-top: 15px;
+}
+
+.p-top-20 {
+    padding-top: 20px;
+}
+
+.p-top-25 {
+    padding-top: 25px;
+}
+
+.p-bottom-5 {
+    padding-bottom: 5px;
+}
+
+.m-bottom-10 {
+    padding-bottom: 10px;
+}
+
+.m-bottom-15 {
+    padding-bottom: 15px;
+}
+
+.m-bottom-20 {
+    padding-bottom: 20px;
+}
+
+.m-bottom-25 {
+    padding-bottom: 25px;
+}
+
+.p-5 {
+    padding: 5px;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.p-15 {
+    padding: 15px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.p-25 {
+    padding: 25px;
+}
+
+.m-5 {
+    margin: 5px;
+}
+
+.m-10 {
+    margin: 10px;
+}
+
+.m-15 {
+    margin: 15px;
+}
+
+.m-20 {
+    margin: 20px;
+}
+
+.m-25 {
+    margin: 25px;
 }
