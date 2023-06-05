@@ -24,11 +24,21 @@ td, th {
     white-space: nowrap;
     border-right-color: var(--muted-color);
     padding: 0.4rem 1rem;
-    border-radius: 0.3rem;
- 
+
     &:last-child {
+        border-top-right-radius: 0.3rem;
+        border-bottom-right-radius: 0.3rem;
+    }
+
+    &:first-child {
+        border-top-left-radius: 0.3rem;
+        border-bottom-left-radius: 0.3rem;
+    }
+ 
+    &:last-child, &:first-child {
         border-right-color: transparent;
     }
+
 }
 
 tbody {

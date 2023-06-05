@@ -68,7 +68,7 @@
 
                 <div>
                     <select name="select" formControlName="categoryId">
-                        <option [value]="undefined">Select a category</option>
+                        <option [value]="null">Select a category</option>
                         <option [value]="category.categoryId" *ngFor="let category of categories">{{ category.name }}</option>
                       </select>
                 </div>
@@ -86,5 +86,6 @@
                 </button>
             </div>
         </div>
+        <div>{{productForm.value | json}}</div>
     </ng-container>
 </div>
