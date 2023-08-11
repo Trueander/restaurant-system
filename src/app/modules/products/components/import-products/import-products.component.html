@@ -15,7 +15,7 @@
             <div class="selected-file-info">
                 <div class="selected-file-wrapper">
                     <div class="delete-button" (click)="deleteFile()">
-                        x
+                        <div>x</div>
                     </div>
                     <div class="text-file">{{file.name}}</div>
                     <button mat-stroked-button color="primary" (click)="importProducts()">
@@ -47,29 +47,29 @@
               <div class="body-item-wrapper" [formGroupName]="i" *ngFor="let product of productsArray.controls; let i = index">
                 <div>
                     <input type="text" formControlName="name" 
-                    [ngClass]="{'error-input': productsArray.controls[i].get('name')?.valid !== true}">
+                    [ngClass]="{'error-input': !productsArray.controls[i].get('name')?.valid}">
                 </div>
                 <div>
                     <input type="text" formControlName="description" 
-                    [ngClass]="{'error-input': productsArray.controls[i].get('description')?.valid !== true}">
+                    [ngClass]="{'error-input': !productsArray.controls[i].get('description')?.valid}">
                 </div>
                 <div>
                     <input type="text" formControlName="price" class="text-center"
-                    [ngClass]="{'error-input': productsArray.controls[i].get('price')?.valid !== true}">
+                    [ngClass]="{'error-input': !productsArray.controls[i].get('price')?.valid}">
                 </div>
                 <div>
                     <input type="text" formControlName="stock" class="text-center"
-                    [ngClass]="{'error-input': productsArray.controls[i].get('stock')?.valid !== true}">
+                    [ngClass]="{'error-input': !productsArray.controls[i].get('stock')?.valid}">
                 </div>
                 <div>
                     <input type="text" formControlName="imageUrl" 
-                    [ngClass]="{'error-input': productsArray.controls[i].get('imageUrl')?.valid !== true}">
+                    [ngClass]="{'error-input': !productsArray.controls[i].get('imageUrl')?.valid}">
                 </div>
 
                 <div>
-                    <select name="select" formControlName="categoryId">
-                        <option [value]="undefined">Select a category</option>
-                        <option [value]="category.categoryId" *ngFor="let category of categories">{{ category.name }}</option>
+                    <select name="select" formControlName="categoryId" [ngClass]="{'error-input': !productsArray.controls[i].get('categoryId')?.valid}">
+                        <option [ngValue]="null">Select a category</option>
+                        <option [ngValue]="category.categoryId" *ngFor="let category of categories">{{ category.name }}</option>
                       </select>
                 </div>
                 <div>

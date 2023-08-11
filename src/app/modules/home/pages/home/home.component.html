@@ -1,11 +1,8 @@
 <div class="container">
     <div class="side-nav">
-
         <div class="logo">
-            <h2>LOGOCOMP</h2>
-            
+            <h1 class="font-montserrat">LOGOCOMP</h1>
         </div>
-
         <div class="side-nav-item" *ngFor="let route of app_routes" [routerLink]="[route.route]" routerLinkActive="active-route" >
             <div [routerLink]="[route.route]" routerLinkActive="selected-route"></div>
             <i [ngClass]="route.fontAwesomeIcon"></i>

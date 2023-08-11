@@ -3,7 +3,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
-import { Category } from 'src/app/core/models/category';
+import { Category } from 'src/app/modules/products/models/category';
 import { CategoryService } from 'src/app/modules/categories/services/category.service';
 import { ImportProductsComponent } from '../../components/import-products/import-products.component';
 import { ProductFormDialogComponent } from '../../components/product-form-dialog/product-form-dialog.component';

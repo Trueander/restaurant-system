@@ -1,12 +1,13 @@
 import { Component, ElementRef, ViewChild, Output, EventEmitter, HostListener, OnDestroy, Input, OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category } from 'src/app/core/models/category';
-import { Product } from 'src/app/core/models/product';
-import { ProductRegistrationRequest } from 'src/app/core/models/product-registration-request';
-import { ProductUpdateRequest } from 'src/app/core/models/product-update-request';
+import { Category } from 'src/app/modules/products/models/category';
+import { Product } from 'src/app/modules/products/models/product';
+import { ProductRegistrationRequest } from 'src/app/modules/products/models/product-registration-request';
+import { ProductUpdateRequest } from 'src/app/modules/products/models/product-update-request';
 import { CategoryService } from 'src/app/modules/categories/services/category.service';
 import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 import { ProductService } from '../../services/product.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-product-form-dialog',
@@ -14,31 +15,27 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-form-dialog.component.scss']
 })
 export class ProductFormDialogComponent implements OnInit {
-  productForm!: FormGroup;
-  categories: Category[] = [];
-
-  imageValidated: boolean = false;
-
-  @ViewChild('image') image!: ElementRef;
-
   @Input() productIdToUpdate!: number;
-
   @Output() closePanel = new EventEmitter<void>();
   @Output() updatedProductEmitter = new EventEmitter<Product>();
-
+  @ViewChild('image') image!: ElementRef;
+  productForm!: FormGroup;
+  categories: Category[] = [];
+  imageValidated: boolean = false;
   numRegex = /^[0-9]+(\.[0-9]\d{0,1})?$/;
+  unsubscribe$: Subject<void>;
 
   constructor(private fb: FormBuilder, 
     private productService: ProductService,
     private categoryService: CategoryService,
     private sweetAlertService: SweetAlertService) {
-
+      this.loadProductForm();
+      this.unsubscribe$ = new Subject<void>;
   }
   ngOnInit(): void {
-    this.loadProductForm();
-
     if(this.productIdToUpdate) {
         this.productService.getProduct(this.productIdToUpdate)
+            .pipe(takeUntil(this.unsubscribe$))
             .subscribe({
               next: (response: Product) => this.loadProductInfo(response),
               error: (error) => console.log(error)
@@ -50,7 +47,6 @@ export class ProductFormDialogComponent implements OnInit {
   }
 
   onLoadImage() {
-    console.log(this.image.nativeElement)
       if(this.image.nativeElement.complete && this.image.nativeElement.naturalWidth == 0) {
         this.imageUrl?.setErrors({'image': true});
         this.imageValidated = false;
@@ -116,7 +112,7 @@ export class ProductFormDialogComponent implements OnInit {
       stock: stock,
       categoryId: category.categoryId,
       imageUrl: imageUrl
-    })
+    });
 
     if(imageUrl) this.imageValidated = true;
   }

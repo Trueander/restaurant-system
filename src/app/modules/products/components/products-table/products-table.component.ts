@@ -2,7 +2,7 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Product } from 'src/app/core/models/product';
+import { Product } from 'src/app/modules/products/models/product';
 import { ProductService } from '../../services/product.service';
 import { ProductFormDialogComponent } from '../product-form-dialog/product-form-dialog.component';
 
@@ -31,8 +31,10 @@ export class ProductsTableComponent implements OnInit, OnChanges{
 
   overlayRef!: OverlayRef;
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
     private overlay: Overlay) {
+      
   }
 
   ngOnInit() {
@@ -106,13 +108,13 @@ export class ProductsTableComponent implements OnInit, OnChanges{
     componentRef.instance.updatedProductEmitter
                 .subscribe(response => {
                   this.products = this.products.map(prod => {
-                    if(prod.productId == response.productId) {
+                    if(prod.productId === response.productId) {
                       prod = response;
                       return prod;
                     }
                     return prod;
-                  })
-                })
+                  });
+                });
 
     this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach());
   }
@@ -131,15 +133,11 @@ export class ProductsTableComponent implements OnInit, OnChanges{
 
   detachOverlayRef(): void {
       this.productService.getCloseModalValue()
-          .subscribe
-          ((value: Boolean) => {
+          .subscribe((value: Boolean) => {
             if(value && this.overlayRef) {
-              this.overlayRef.detach()
+              this.overlayRef.detach();
             }
-        })
+        });
     }
-  
-
-
 }
 

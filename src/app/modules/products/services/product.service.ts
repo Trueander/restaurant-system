@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Product } from 'src/app/core/models/product';
-import { ProductRegistrationRequest } from 'src/app/core/models/product-registration-request';
+import { Product } from 'src/app/modules/products/models/product';
+import { ProductRegistrationRequest } from 'src/app/modules/products/models/product-registration-request';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class ProductService {
   getProductsFilterByName(productName: string): Observable<Product[]> {
     let params = new HttpParams();
     params = params.set('name', productName);
-    return this.http.get<any>(`${this.baseUrlBackend}/filter-by-name`,{params: params});
+    return this.http.get<Product[]>(`${this.baseUrlBackend}/filter-by-name`,{params: params});
   }
 
   getProductsPageable(page: number, size: number): Observable<any> {

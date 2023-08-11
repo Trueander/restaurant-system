@@ -3,6 +3,7 @@
 :root 
 {
 --primary-color: #326789;
+--primary-color-dark: #265476;
 --secondary-color: #78A6C8;
 --success-color:  #3aa981;
 --success-color-hover:   #7ac5aa;
@@ -15,12 +16,11 @@
 --muted-color: #6a6666;
 --border-color: #ededed;
 --warning-color: #ffc107;
-
+--dark-color: #202020;
 --border-radius-sidenav: 7px;
-
 --header-height: 80px;
-
 --table-light-background: #edf5fc;
+--font-montserrat: font-family: 'Montserrat', sans-serif; 
 }
 
 * {
@@ -50,13 +50,41 @@ html, body {
     min-height: 100vh;
     height: auto;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Mulish', sans-serif; }
 
 .overlay-panel {
     display: flex;
     flex-direction: column;
     background-color: #fff;
     border-radius: var(--border-radius-sidenav);
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.secondary-color {
+    color: var(--secondary-color);
+}
+
+.success-color {
+    color: var(--success-color);
+}
+
+.danger-color {
+    color: var(--danger-color);
+}
+
+.dark-color {
+    color: var(--dark-color)
+}
+
+.muted-color {
+    color: var(--muted-color);
+}
+
+.font-montserrat {
+    font-family: var(--font-montserrat);
 }
 
 .text-center {
