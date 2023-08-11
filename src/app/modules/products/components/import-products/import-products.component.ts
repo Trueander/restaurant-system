@@ -53,6 +53,7 @@ export class ImportProductsComponent implements OnInit, OnDestroy{
               this.sweetAlertService.successAlert('Products imported successfully');
               this.importedProducts = productsResponse;
               this.loadImportedProductsToFormArray();
+              console.log(this.productForm)
             }
           });
     }
@@ -71,7 +72,6 @@ export class ImportProductsComponent implements OnInit, OnDestroy{
     event.preventDefault();
     let fileInput = event.dataTransfer.files[0];
     if(!this.validateFileXlsx(fileInput)){
-      
       return
     }
     this.file = fileInput;
