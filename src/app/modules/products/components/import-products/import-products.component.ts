@@ -53,7 +53,6 @@ export class ImportProductsComponent implements OnInit, OnDestroy{
               this.sweetAlertService.successAlert('Products imported successfully');
               this.importedProducts = productsResponse;
               this.loadImportedProductsToFormArray();
-              console.log(this.productForm)
             }
           });
     }
@@ -114,7 +113,7 @@ export class ImportProductsComponent implements OnInit, OnDestroy{
       description: [product.description, Validators.required],
       price: [product.price, [Validators.required, Validators.pattern(this.numRegex)]],
       stock: [product.stock, [Validators.required, Validators.pattern('^[0-9]+[0-9]*$')]],
-      imageUrl: [product.imageUrl, Validators.required],
+      imageUrl: [product.imageUrl],
       categoryId: [product.category ? product.category.categoryId: null, Validators.required]
     });
   }

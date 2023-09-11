@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, Output, EventEmitter, HostListener, OnDestroy, Input, OnInit  } from '@angular/core';
+import { Component, ElementRef, ViewChild, Output, EventEmitter, HostListener, Input, OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/modules/products/models/category';
 import { Product } from 'src/app/modules/products/models/product';
@@ -98,7 +98,7 @@ export class ProductFormDialogComponent implements OnInit {
       description: [null, [Validators.required, Validators.maxLength(255)]],
       stock: [null, [Validators.required, Validators.min(0)]],
       categoryId: [null, Validators.required],
-      imageUrl: [null, [Validators.required, Validators.maxLength(255)]],
+      imageUrl: [null, [Validators.maxLength(255)]],
     })
   }
 
