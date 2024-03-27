@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { TokenService } from 'src/app/modules/auth/services/token.service';
 
 export interface Route {
@@ -14,7 +14,8 @@ export interface Route {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  tokenService = inject(TokenService);
+
+  constructor(public tokenService: TokenService) { }
 
   app_routes: Route[] = [
     { name: 'Dashboard', route: 'dashboard', fontAwesomeIcon:'fa-solid fa-chart-line'},

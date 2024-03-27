@@ -3,18 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './modules/home/pages/home/home.component';
 import { LoginComponent } from './modules/auth/pages/login/login.component';
-import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { LoginGuard } from './modules/auth/guards/login.guard';
+import {AuthGuard} from "./modules/auth/guards/auth.guard";
 
 const appRoutes: Routes = [
-  {
-    path: '', redirectTo: '/login', pathMatch: 'full'
-  },
   {
     path: '',
     component: HomeComponent,
     canMatch: [AuthGuard],
-    canActivate: [AuthGuard],
     loadChildren: () => import(`./modules/home/home.module`).then(m => m.HomeModule)
   },
   {
@@ -22,6 +18,9 @@ const appRoutes: Routes = [
     component: LoginComponent,
     canActivate: [LoginGuard],
     loadChildren: () => import(`./modules/auth/auth.module`).then(m => m.AuthModule)
+  },
+  {
+    path: '**', redirectTo: '/login', pathMatch: 'full'
   }
 ];
 

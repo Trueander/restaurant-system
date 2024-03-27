@@ -23,11 +23,11 @@ export class TokenService {
 
   clearOnLogout(): void {
     this.authenticated = false;
-    localStorage.clear();
-    this.router.navigate(['/login']);
+    localStorage.removeItem(this.TOKEN_KEY);
+    this.router.navigate(["/login"]);
   }
 
-  get isAuthenticated(): boolean {
+  isAuthenticated(): boolean {
     return this.authenticated;
   }
 }
