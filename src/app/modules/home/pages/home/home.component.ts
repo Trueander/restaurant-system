@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TokenService } from 'src/app/modules/auth/services/token.service';
 
 export interface Route {
   name: string;
@@ -12,12 +13,15 @@ export interface Route {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
+  constructor(public tokenService: TokenService) { }
+
   app_routes: Route[] = [
     { name: 'Dashboard', route: 'dashboard', fontAwesomeIcon:'fa-solid fa-chart-line'},
-    { name: 'Orders', route: 'orders', fontAwesomeIcon:'fa-solid fa-list-check'},
-    { name: 'Products', route: 'products', fontAwesomeIcon:'fa-solid fa-utensils'},
-    { name: 'Tables', route: 'tables', fontAwesomeIcon:'fa-solid fa-chair'},
-    { name: 'Customers', route: 'customers', fontAwesomeIcon:'fa-solid fa-users'},
-    { name: 'Employees', route: 'employees', fontAwesomeIcon:'fa-solid fa-users-gear'}
-  ] 
+    { name: 'Pedidos', route: 'orders', fontAwesomeIcon:'fa-solid fa-list-check'},
+    { name: 'Productos', route: 'products', fontAwesomeIcon:'fa-solid fa-utensils'},
+    { name: 'Mesas', route: 'tables', fontAwesomeIcon:'fa-solid fa-chair'},
+    { name: 'Clientes', route: 'customers', fontAwesomeIcon:'fa-solid fa-users'},
+    { name: 'Colaboradores', route: 'employees', fontAwesomeIcon:'fa-solid fa-users-gear'}
+  ];
 }

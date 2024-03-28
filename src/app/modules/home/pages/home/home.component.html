@@ -8,6 +8,11 @@
             <i [ngClass]="route.fontAwesomeIcon"></i>
             <span>{{route.name}}</span>
         </div>
+        <div class="side-nav-item logout" (click)="tokenService.clearOnLogout()">
+            <div></div>
+            <i ngClass="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Salir</span>
+        </div>
     </div>
     <div class="content">
         <router-outlet></router-outlet>

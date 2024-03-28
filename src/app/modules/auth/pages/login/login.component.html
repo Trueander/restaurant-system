@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="login-container">
+
+        <div class="image">
+            <img ngSrc="../../../../../assets/breakfast_login.svg" alt="" height="485" width="888">
+        </div>
+        <form [formGroup]="loginForm" novalidate (ngSubmit)="login()">
+            <div class="form-container">
+                <h1 class="m-top-0">Happy food</h1>
+                <mat-form-field appearance="fill">
+                    <mat-label>Correo</mat-label>
+                    <input matInput type="text" formControlName="email">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password" formControlName="password">
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" (click)="login()">Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+</div>
