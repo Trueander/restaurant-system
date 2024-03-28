@@ -3,9 +3,8 @@ import { TokenService } from 'src/app/modules/auth/services/token.service';
 
 export interface Route {
   name: string;
-  route?: string;
+  route: string;
   fontAwesomeIcon: string;
-  action?: () => void;
 }
 
 @Component({

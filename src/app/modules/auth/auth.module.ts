@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './pages/login/login.component';
@@ -10,10 +10,11 @@ import { SharedModule } from 'src/app/shared/shared/shared.module';
   declarations: [
     LoginComponent
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        SharedModule,
+        NgOptimizedImage
+    ]
 })
 export class AuthModule { }

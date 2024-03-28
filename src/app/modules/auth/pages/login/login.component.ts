@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
@@ -9,20 +9,16 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent{
   loginForm: FormGroup;
 
-  constructor(
-    private router: Router,
-    private loginService: LoginService,
-    private tokenService: TokenService) {
+  constructor(private router: Router,
+              private loginService: LoginService,
+              private tokenService: TokenService) {
     this.loginForm = new FormGroup({
       email: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });
-  }
-
-  ngOnInit(): void {
   }
 
   login(): void{
