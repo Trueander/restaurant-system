@@ -1,0 +1,66 @@
+<div class="container list-employees">
+  <h2 class="title-sm muted-color font-w-600">Colaboradores</h2>
+
+  <div class="table-wrapper">
+    <button class="font-w-600" routerLink="form" mat-raised-button color="primary">
+      <mat-icon>add</mat-icon> Registrar colaborador
+    </button>
+
+    <div class="filter">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar colaboradores</mat-label>
+        <input class="filter" matInput type="text" [formControl]="employeesFilter">
+        <button matSuffix mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <ng-container *ngFor="let column of columns">
+          <th>
+            {{column}}
+          </th>
+        </ng-container>
+      </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="employeeResponse$ | async">
+          <ng-container *ngIf="paginationResponse.content.length > 0; else noResults">
+            <tr *ngFor="let employee of paginationResponse.content">
+              <td>{{employee.firstname}}</td>
+              <td>{{employee.lastname}}</td>
+              <td> {{employee.dni}}</td>
+              <td>{{employee.phoneNumber || 'NO REGISTRADO'}}</td>
+              <td>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon class="muted-color">groups</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item *ngFor="let role of employee.roles">{{role.name}}</button>
+                </mat-menu>
+              </td>
+              <td>
+                <button mat-icon-button color="accent">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #noResults>
+            <app-no-results-table></app-no-results-table>
+          </ng-template>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <mat-paginator *ngIf="paginationResponse" [length]="paginationResponse.totalElements"
+                   [pageSize]="paginationResponse.size"
+                   [hidePageSize]="false"
+                   (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+</div>
+

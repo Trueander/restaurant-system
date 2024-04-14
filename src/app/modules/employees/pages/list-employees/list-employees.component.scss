@@ -1,0 +1,29 @@
+.list-employees {
+
+  .table-wrapper {
+    background-color: var(--secondary-background-color);
+    box-shadow: 0 0.125rem 0.1875rem rgb(0 0 0 / 10%);
+    border-radius: 0.75rem;
+    padding: 20px;
+
+    .table-filter {
+      display: grid;
+      grid-template-columns: 0.9fr 3fr;
+      column-gap: 0.7rem;
+      margin: 20px 0 0 0;
+    }
+
+    .filter {
+      width: 50%;
+      mat-form-field {
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+  }
+
+  mat-paginator {
+    font-size: 0.85rem;
+    color: var(--muted-color);
+  }
+}

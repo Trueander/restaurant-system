@@ -1,0 +1,59 @@
+<div class="employee-form" >
+  <h2 class="title">Registrar colaborador</h2>
+  <div class="form-content">
+    <form [formGroup]="employeeForm" (ngSubmit)="createEmployee()">
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" formControlName="firstname">
+          <mat-error *ngIf="getEmployeeFormControl('firstname')?.hasError('required')">Nombre requerido</mat-error>
+          <mat-error *ngIf="getEmployeeFormControl('firstname')?.hasError('maxlength')">Máximo caracteres: 60</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput type="text" formControlName="lastname">
+          <mat-error *ngIf="getEmployeeFormControl('lastname')?.hasError('required')">Apellido requerido</mat-error>
+          <mat-error *ngIf="getEmployeeFormControl('lastname')?.hasError('maxlength')">Máximo caracteres: 60</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Dni</mat-label>
+          <input matInput type="text" formControlName="dni">
+          <mat-error *ngIf="getEmployeeFormControl('dni')?.hasError('required')">Dni requerido</mat-error>
+          <mat-error *ngIf="getEmployeeFormControl('dni')?.hasError('minlength')">Mínimo caracteres: 8</mat-error>
+          <mat-error *ngIf="getEmployeeFormControl('dni')?.hasError('maxlength')">Máximo caracteres: 8</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input matInput type="text" formControlName="email">
+          <mat-error *ngIf="getEmployeeFormControl('email')?.hasError('required')">Correo requerido</mat-error>
+          <mat-error *ngIf="getEmployeeFormControl('email')?.hasError('email')">Correo inválido</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Celular</mat-label>
+        <input matInput type="text" formControlName="phoneNumber">
+        <mat-error *ngIf="getEmployeeFormControl('phoneNumber')?.hasError('minlength')">El número debe tener 9 dígitos</mat-error>
+        <mat-error *ngIf="getEmployeeFormControl('phoneNumber')?.hasError('maxlength')">El número debe tener 9 dígitos</mat-error>
+        <mat-error *ngIf="getEmployeeFormControl('phoneNumber')?.hasError('invalidPhoneNumber')">Celular inválido</mat-error>
+      </mat-form-field>
+
+      <div class="d-flex flex-column roles">
+        <h3 class="title">Roles</h3>
+        <div class="d-flex gap-10 flex-wrap-wrap">
+          <ng-container *ngIf="roles$ | async as roles">
+            <mat-checkbox (click)="agregarRolColaborador(role.id)" color="primary" *ngFor="let role of roles">{{role.name}}</mat-checkbox>
+          </ng-container>
+
+        </div>
+        <mat-error *ngIf="getEmployeeFormControl('roleIds')?.invalid && (getEmployeeFormControl('roleIds')?.touched || getEmployeeFormControl('roleIds')?.dirty)">Seleccione al menos un rol</mat-error>
+      </div>
+
+      <div class="register-button m-top-20">
+        <button type="submit" mat-flat-button color="primary">Registrar</button>
+        <button mat-stroked-button class="m-left-10 muted-color" routerLink="/employees">Regresar</button>
+      </div>
+    </form>
+  </div>
+</div>

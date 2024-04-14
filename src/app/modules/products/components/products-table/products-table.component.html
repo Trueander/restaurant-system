@@ -1,4 +1,4 @@
-<table>
+<table class="table">
     <thead>
         <tr>
             <ng-container *ngFor="let column of columns">
@@ -8,8 +8,8 @@
             </ng-container>
         </tr>
     </thead>
-    <tbody>
-        <ng-template [ngIf]="products.length>0">
+    <tbody *ngIf="products.length > 0; else noResults">
+        <ng-container >
             <tr *ngFor="let product of products; let index = index">
                 <td>{{product.name}}</td>
                 <td>S/.{{product.price}}</td>
@@ -25,22 +25,16 @@
                     </button>
                 </td>
             </tr>
-        </ng-template>
+        </ng-container>
 
     </tbody>
 </table>
-<ng-template [ngIf]="products.length == 0">
-    <div class="no-content">
-        <div>
-            <img src="../../../../../assets/search.svg" alt="search" width="200px" height="200px">
-        </div>
-        <span *ngIf="productName && productName.length > 0">No products found for '{{productName}}'</span>
-        <span *ngIf="productName.length == 0">No products to display. Create products.</span>
-
-    </div>
+<ng-template #noResults>
+  <app-no-results-table></app-no-results-table>
 </ng-template>
-<mat-paginator *ngIf="paginatorResult" [length]="paginatorResult.totalElements"
-[pageSize]="size"
-[hidePageSize]="false"
-(page)="onPageChange($event)">
+<mat-paginator *ngIf="paginatorResult"
+               [length]="paginatorResult.totalElements"
+               [pageSize]="size"
+               [hidePageSize]="false"
+               (page)="onPageChange($event)">
 </mat-paginator>

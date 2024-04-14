@@ -1,25 +1,25 @@
 <div class="container">
-    <h2 class="title">Products</h2>
+    <h2 class="title-sm muted-color font-w-600">Productos</h2>
 
     <div class="table-wrapper">
         <div class="buttons">
             <button mat-raised-button color="primary" (click)="openProductFormDialog()">
-                <mat-icon>add</mat-icon>  Add new product 
+                <mat-icon>add</mat-icon>  Crear producto
             </button>
             <button mat-stroked-button color="accent" (click)="openUpdateStockDialog()">
-                <mat-icon>arrow_upward</mat-icon> Update stock
+                <mat-icon>arrow_upward</mat-icon> Actualizar producto
             </button>
             <button mat-stroked-button (click)="openImportProductsDialog()">
-                <mat-icon>attach_file</mat-icon> Import from excel
+                <mat-icon>attach_file</mat-icon> Importar desde Excel
             </button>
         </div>
 
 
         <div class="table-filter">
           <mat-form-field appearance="outline">
-            <mat-label>Category</mat-label>
+            <mat-label>Categoría</mat-label>
             <mat-select [(value)]="selectedCategoryId">
-              <mat-option>None</mat-option>
+              <mat-option>Ninguno</mat-option>
               <mat-option [value]="category.categoryId" *ngFor="let category of categories">
                 <div class="selectWithIcon">
                     <mat-icon aria-hidden="false" [fontIcon]="category.icon"></mat-icon>
@@ -29,7 +29,7 @@
             </mat-select>
           </mat-form-field>
             <mat-form-field class="example-form-field" appearance="outline">
-                <mat-label>Search products</mat-label>
+                <mat-label>Buscar productos</mat-label>
                 <input matInput type="text" [formControl]="productNameFilterControl">
                 <button matSuffix mat-icon-button >
                   <mat-icon>search</mat-icon>
@@ -37,7 +37,7 @@
               </mat-form-field>
         </div>
         <button *ngIf="(productNameFilter && productNameFilter.length > 0) || selectedCategoryId" mat-stroked-button class="clear-filter-button" color="primary" (click)="clearFilters()">
-          <mat-icon>backspace</mat-icon> Clear filters
+          <mat-icon>backspace</mat-icon> Limpiar filtros
         </button>
 
         <app-products-table [productName]="productNameFilter" [categoryId]="selectedCategoryId"></app-products-table>
