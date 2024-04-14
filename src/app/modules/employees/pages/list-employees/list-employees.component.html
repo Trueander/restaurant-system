@@ -28,33 +28,32 @@
       </thead>
       <tbody>
         <ng-container *ngIf="employeeResponse$ | async">
-          <ng-container *ngIf="paginationResponse.content.length > 0; else noResults">
-            <tr *ngFor="let employee of paginationResponse.content">
-              <td>{{employee.firstname}}</td>
-              <td>{{employee.lastname}}</td>
-              <td> {{employee.dni}}</td>
-              <td>{{employee.phoneNumber || 'NO REGISTRADO'}}</td>
-              <td>
-                <button mat-icon-button [matMenuTriggerFor]="menu">
-                  <mat-icon class="muted-color">groups</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item *ngFor="let role of employee.roles">{{role.name}}</button>
-                </mat-menu>
-              </td>
-              <td>
-                <button mat-icon-button color="accent">
-                  <mat-icon>edit</mat-icon>
-                </button>
-              </td>
-            </tr>
-          </ng-container>
-          <ng-template #noResults>
-            <app-no-results-table></app-no-results-table>
-          </ng-template>
+          <tr *ngFor="let employee of paginationResponse.content">
+            <td>{{employee.firstname}}</td>
+            <td>{{employee.lastname}}</td>
+            <td> {{employee.dni}}</td>
+            <td>{{employee.phoneNumber || 'NO REGISTRADO'}}</td>
+            <td>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon class="muted-color">groups</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngFor="let role of employee.roles">{{role.name}}</button>
+              </mat-menu>
+            </td>
+            <td>
+              <button mat-icon-button color="accent">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </tr>
         </ng-container>
       </tbody>
     </table>
+
+    <ng-container *ngIf="!paginationResponse.content.length">
+      <app-no-results-table></app-no-results-table>
+    </ng-container>
 
     <mat-paginator *ngIf="paginationResponse" [length]="paginationResponse.totalElements"
                    [pageSize]="paginationResponse.size"
