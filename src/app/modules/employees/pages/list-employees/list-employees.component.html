@@ -55,7 +55,7 @@
       <app-no-results-table></app-no-results-table>
     </ng-container>
 
-    <mat-paginator *ngIf="paginationResponse" [length]="paginationResponse.totalElements"
+    <mat-paginator *ngIf="paginationResponse.totalElements" [length]="paginationResponse.totalElements"
                    [pageSize]="paginationResponse.size"
                    [hidePageSize]="false"
                    (page)="onPageChange($event)">

@@ -32,7 +32,7 @@ export class ListEmployeesComponent implements OnInit{
 
   constructor(private employeeService: EmployeeService,
               private sweetAlertService: SweetAlertService) {
-    this.paginationRequest = new PaginationRequest(0, 2, '');
+    this.paginationRequest = new PaginationRequest(0, 6, '');
     this.paginationResponse = new PaginationResponse<Employee>(0,0,[]);
   }
 
