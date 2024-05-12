@@ -27,4 +27,12 @@ export class EmployeeService {
   createEmployee(requestEmployee: RequestEmployee): Observable<void> {
     return this.http.post<void>(this.baseUrlBackend, requestEmployee);
   }
+
+  getEmployeeById(employeeId: number): Observable<Employee> {
+    return this.http.get<Employee>(`${this.baseUrlBackend}/${employeeId}`);
+  }
+
+  updateEmployee(employeeId: number, requestEmployee: RequestEmployee): Observable<void> {
+    return this.http.put<void>(`${this.baseUrlBackend}/${employeeId}`, requestEmployee);
+  }
 }

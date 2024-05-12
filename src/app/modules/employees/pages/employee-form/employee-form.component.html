@@ -1,7 +1,7 @@
 <div class="employee-form" >
   <h2 class="title">Registrar colaborador</h2>
   <div class="form-content">
-    <form [formGroup]="employeeForm" (ngSubmit)="createEmployee()">
+    <form [formGroup]="employeeForm" (ngSubmit)="employeeId ? updateEmployee() : createEmployee()">
       <div class="input-group">
         <mat-form-field appearance="outline">
           <mat-label>Nombre</mat-label>
@@ -23,6 +23,7 @@
           <mat-error *ngIf="getEmployeeFormControl('dni')?.hasError('required')">Dni requerido</mat-error>
           <mat-error *ngIf="getEmployeeFormControl('dni')?.hasError('minlength')">Mínimo caracteres: 8</mat-error>
           <mat-error *ngIf="getEmployeeFormControl('dni')?.hasError('maxlength')">Máximo caracteres: 8</mat-error>
+          <mat-error *ngIf="getEmployeeFormControl('dni')?.hasError('pattern')">Dni inválido</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
@@ -43,7 +44,7 @@
         <h3 class="title">Roles</h3>
         <div class="d-flex gap-10 flex-wrap-wrap">
           <ng-container *ngIf="roles$ | async as roles">
-            <mat-checkbox (click)="agregarRolColaborador(role.id)" color="primary" *ngFor="let role of roles">{{role.name}}</mat-checkbox>
+            <mat-checkbox (click)="agregarRolColaborador(role.id)" color="primary" [checked]="getRolesIds().includes(role.id)" *ngFor="let role of roles">{{role.name}}</mat-checkbox>
           </ng-container>
 
         </div>
@@ -51,7 +52,7 @@
       </div>
 
       <div class="register-button m-top-20">
-        <button type="submit" mat-flat-button color="primary">Registrar</button>
+        <button type="submit" mat-flat-button color="primary">{{ employeeId ? 'Actualizar' : 'Registrar' }}</button>
         <button mat-stroked-button class="m-left-10 muted-color" routerLink="/employees">Regresar</button>
       </div>
     </form>

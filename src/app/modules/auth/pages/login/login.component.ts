@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent{
   loginForm: FormGroup;
+  errorMessage: string | undefined;
 
   constructor(private router: Router,
               private loginService: LoginService,
@@ -23,9 +24,12 @@ export class LoginComponent{
 
   login(): void{
     this.loginService.login(this.loginForm.value)
-        .subscribe(response => {
-          this.tokenService.setToken(response.token);
-          this.router.navigate(['/dashboard']);
+        .subscribe({
+          next: response => {
+            this.tokenService.setToken(response.token);
+            this.router.navigate(['/dashboard']);
+          },
+          error: () => this.errorMessage = 'Usuario y/o contraseña incorrecta'
         });
   }
 }
