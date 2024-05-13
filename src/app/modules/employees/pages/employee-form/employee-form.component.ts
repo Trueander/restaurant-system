@@ -50,7 +50,7 @@ export class EmployeeFormComponent implements OnInit{
     this.route.params
       .pipe(
         takeUntil(this.unsubscribe$),
-        map(params => this.employeeId = +params['employeeId']),
+        map(params => +params['employeeId']),
         filter(employeeId => !!employeeId),
         switchMap(employeeId => this.employeeService.getEmployeeById(employeeId)),
         tap(employee => this.setEmployeeValuesForm(employee)),
