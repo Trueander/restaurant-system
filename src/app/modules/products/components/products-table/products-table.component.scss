@@ -1,9 +1,3 @@
-table {
-    width: 100%;
-    margin-top: 15px;
-    border-collapse: collapse;
-}
-
 .no-content {
     padding: 20px;
     background-color: var(--table-light-background);
@@ -11,42 +5,6 @@ table {
     color: var(--muted-color);
     text-align: center;
     border-radius: var(--border-radius-sidenav);
-}
-
-th {
-    font-weight: 500;
-}
-
-td, th {
-    font-size: 0.85rem;
-    color: var(--muted-color);
-    text-align: start;
-    white-space: nowrap;
-    border-right-color: var(--muted-color);
-    padding: 0.4rem 1rem;
-
-    &:last-child {
-        border-top-right-radius: 0.3rem;
-        border-bottom-right-radius: 0.3rem;
-    }
-
-    &:first-child {
-        border-top-left-radius: 0.3rem;
-        border-bottom-left-radius: 0.3rem;
-    }
- 
-    &:last-child, &:first-child {
-        border-right-color: transparent;
-    }
-
-}
-
-tbody {
-    border-color: transparent;
-}
- 
-tr:nth-child(even) td {
-    background: var(--table-light-background);
 }
 
 .available, .unavailable {

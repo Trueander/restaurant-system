@@ -17,7 +17,7 @@ describe('ProductFormDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should employee-form', () => {
     expect(component).toBeTruthy();
   });
 });

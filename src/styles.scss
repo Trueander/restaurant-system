@@ -1,6 +1,6 @@
 @import '@angular/cdk/overlay-prebuilt.css';
 
-:root 
+:root
 {
 --primary-color: #326789;
 --primary-color-dark: #265476;
@@ -20,14 +20,14 @@
 --border-radius-sidenav: 7px;
 --header-height: 80px;
 --table-light-background: #edf5fc;
---font-montserrat: font-family: 'Montserrat', sans-serif; 
+--font-montserrat: 'Montserrat', sans-serif;
 }
 
 * {
     box-sizing: border-box;
 }
 
-body { 
+body {
     margin: 0;
 }
 
@@ -46,7 +46,7 @@ html{
     background-color: #d1d2d8;
 }
 
-html, body { 
+html, body {
     min-height: 100vh;
     height: auto;
 }
@@ -333,4 +333,112 @@ body { margin: 0; font-family: 'Mulish', sans-serif; }
 
 .m-25 {
     margin: 25px;
+}
+
+.my-5 { margin-top: 5px; margin-bottom: 5px  }
+.my-10 { margin-top: 10px; margin-bottom: 10px  }
+.my-15 { margin-top: 15px; margin-bottom: 15px  }
+.my-20 { margin-top: 20px; margin-bottom: 20px  }
+.my-25 { margin-top: 25px; margin-bottom: 25px  }
+.py-5 { padding-top: 5px; padding-bottom: 5px  }
+.py-10 { padding-top: 10px; padding-bottom: 10px  }
+.py-15 { padding-top: 15px; padding-bottom: 15px  }
+.py-20 { padding-top: 20px; padding-bottom: 20px  }
+.py-25 { padding-top: 25px; padding-bottom: 25px  }
+
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-nowrap { flex-wrap: nowrap; }
+.flex-wrap { flex-wrap: wrap; }
+.justify-content-space-btw { justify-content: space-between; }
+.justify-content-flex-end { justify-content: flex-end; }
+.align-items-center { align-items: center; }
+.flex-wrap-wrap { flex-wrap: wrap }
+.align-items-end {align-items: flex-end}
+.align-content-center { align-content: center; }
+.place-items-end { place-items: flex-end }
+
+/*gap-flex*/
+.gap-5 { gap: 5px}
+.gap-10 { gap: 10px}
+.gap-15 { gap: 15px}
+.gap-20 { gap: 20px}
+.gap-25 { gap: 25px}
+.gap-30 { gap: 30px}
+
+.row-gap-5 { row-gap: 5px}
+.row-gap-10 { row-gap: 10px}
+.row-gap-15 { row-gap: 15px}
+.row-gap-20 { row-gap: 20px}
+.row-gap-25 { row-gap: 25px}
+.row-gap-30 { row-gap: 30px}
+
+.col-gap-5 { column-gap: 5px}
+.col-gap-10 { column-gap: 10px}
+.col-gap-15 { column-gap: 15px}
+.col-gap-20 { column-gap: 20px}
+.col-gap-25 { column-gap: 25px}
+.col-gap-30 { column-gap: 30px}
+
+.font-w-400 { font-weight: 400; }
+.font-w-500 { font-weight: 500; }
+.font-w-600 { font-weight: 600; }
+.font-w-700 { font-weight: 700; }
+
+.title-sm {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.title-m {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.title-lg {
+  font-size: 1.9rem;
+  font-weight: 500;
+}
+
+/* TABLE */
+.table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+
+  th {
+    font-weight: 700;
+  }
+
+  td, th {
+    font-size: 0.85rem;
+    color: var(--muted-color);
+    text-align: start;
+    white-space: nowrap;
+    border-right-color: var(--muted-color);
+    padding: 0.4rem 1rem;
+
+    &:last-child {
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem;
+    }
+
+    &:first-child {
+      border-top-left-radius: 0.3rem;
+      border-bottom-left-radius: 0.3rem;
+    }
+
+    &:last-child, &:first-child {
+      border-right-color: transparent;
+    }
+  }
+
+  tbody {
+    border-color: transparent;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-light-background);
+  }
 }

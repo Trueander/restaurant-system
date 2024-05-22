@@ -17,8 +17,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
 
 import {DialogModule} from '@angular/cdk/dialog';
+import {NoResultsTableComponent} from "../components/no-results-table/no-results-table.component";
 
 
 const MaterialComponents = [
@@ -36,7 +39,9 @@ const MaterialComponents = [
   MatSlideToggleModule,
   MatRadioModule,
   MatAutocompleteModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatCheckboxModule,
+  MatMenuModule
 ];
 
 @NgModule({
@@ -44,12 +49,14 @@ const MaterialComponents = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NoResultsTableComponent
   ],
   exports: [
     MaterialComponents,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NoResultsTableComponent
   ]
 })
 export class SharedModule { }
