@@ -24,7 +24,6 @@ import {SweetAlertService} from "../../../../shared/services/sweet-alert.service
   styleUrls: ['./list-employees.component.scss']
 })
 export class ListEmployeesComponent implements OnInit{
-  employeeResponse$!: Observable<PaginationResponse<Employee>>;
   paginationRequest: PaginationRequest;
   columns: string[] = ['nombre', 'apellido', 'dni', 'celular', 'roles', 'acciones']
   employeesFilter: FormControl = new FormControl();
@@ -37,7 +36,7 @@ export class ListEmployeesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.employeeResponse$ = this.employeesFilter.valueChanges
+    this.employeesFilter.valueChanges
       .pipe(
         startWith(''),
         debounceTime(300),
@@ -48,12 +47,12 @@ export class ListEmployeesComponent implements OnInit{
           this.paginationRequest.page = 0;
           return this.getEmployees$();
         })
-      );
+      ).subscribe();
   }
 
   onPageChange(pageEvent: PageEvent): void {
     this.paginationRequest.page = pageEvent.pageIndex;
-    this.employeeResponse$ = this.getEmployees$();
+    this.getEmployees$().subscribe();
   }
 
   getEmployees$(): Observable<PaginationResponse<Employee>> {

@@ -27,27 +27,25 @@
       </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf="employeeResponse$ | async">
-          <tr *ngFor="let employee of paginationResponse.content">
-            <td>{{employee.firstname}}</td>
-            <td>{{employee.lastname}}</td>
-            <td> {{employee.dni}}</td>
-            <td>{{employee.phoneNumber || 'NO REGISTRADO'}}</td>
-            <td>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon class="muted-color">groups</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item *ngFor="let role of employee.roles">{{role.name}}</button>
-              </mat-menu>
-            </td>
-            <td>
-              <button mat-icon-button color="accent" [routerLink]="['form', employee.id]">
-                <mat-icon>edit</mat-icon>
-              </button>
-            </td>
-          </tr>
-        </ng-container>
+        <tr *ngFor="let employee of paginationResponse.content">
+          <td>{{employee.firstname}}</td>
+          <td>{{employee.lastname}}</td>
+          <td> {{employee.dni}}</td>
+          <td>{{employee.phoneNumber || 'NO REGISTRADO'}}</td>
+          <td>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon class="muted-color">groups</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngFor="let role of employee.roles">{{role.name}}</button>
+            </mat-menu>
+          </td>
+          <td>
+            <button mat-icon-button color="accent" [routerLink]="['form', employee.id]">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
 
