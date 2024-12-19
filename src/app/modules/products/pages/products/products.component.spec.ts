@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsComponent } from './products.component';
+import {CommonModule} from "@angular/common";
+import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "../../../../shared/shared/shared.module";
+import {ProductsTableComponent} from "../../components/products-table/products-table.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -8,7 +13,8 @@ describe('ProductsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductsComponent ]
+      declarations: [ ProductsComponent, ProductsTableComponent ],
+      imports: [HttpClientModule, SharedModule, BrowserAnimationsModule]
     })
     .compileComponents();
 
@@ -17,7 +23,7 @@ describe('ProductsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should employee-form', () => {
+  it('should employee-form products', () => {
     expect(component).toBeTruthy();
   });
 });

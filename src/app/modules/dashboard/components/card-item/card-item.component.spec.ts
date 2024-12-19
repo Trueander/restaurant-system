@@ -17,7 +17,7 @@ describe('CardItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should employee-form', () => {
-    expect(component).toBeTruthy();
+  it('should employee-form card', () => {
+    expect(component.cardInfo).toBeFalsy();
   });
 });

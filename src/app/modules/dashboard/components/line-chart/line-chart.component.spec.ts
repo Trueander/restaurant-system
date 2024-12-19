@@ -17,7 +17,7 @@ describe('LineChartComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should employee-form', () => {
+  it('should employee-form linechart', () => {
     expect(component).toBeTruthy();
   });
 });

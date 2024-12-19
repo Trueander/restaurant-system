@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImportProductsComponent } from './import-products.component';
+import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "../../../../shared/shared/shared.module";
 
 describe('ImportProductsComponent', () => {
   let component: ImportProductsComponent;
@@ -8,7 +10,8 @@ describe('ImportProductsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImportProductsComponent ]
+      declarations: [ ImportProductsComponent ],
+      imports: [HttpClientModule, SharedModule]
     })
     .compileComponents();
 
@@ -17,7 +20,7 @@ describe('ImportProductsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should employee-form', () => {
+  it('should employee-form imports', () => {
     expect(component).toBeTruthy();
   });
 });
