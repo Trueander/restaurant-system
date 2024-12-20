@@ -1,4 +1,4 @@
-<div class="card-item">
+<div class="card-item" *ngIf="cardInfo">
     <div class="card-title">
         <span>{{cardInfo.title}}</span>
         <i [ngClass]="cardInfo.icon"></i>
@@ -10,8 +10,8 @@
         <div class="percentage" [ngClass]="cardInfo.isPositive ? 'success-color' : 'danger-color'">
             <i class="fa-solid " [ngClass]="cardInfo.isPositive ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down'"></i>
             <span class="percentage-value">
-                 <span *ngIf="cardInfo.isPositive">+</span> 
-                 <span *ngIf="!cardInfo.isPositive">-</span> 
+                 <span *ngIf="cardInfo.isPositive">+</span>
+                 <span *ngIf="!cardInfo.isPositive">-</span>
                  {{cardInfo.percentageValue}}%
                 </span>
         </div>

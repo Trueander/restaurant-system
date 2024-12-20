@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductFormDialogComponent } from './product-form-dialog.component';
+import {CommonModule} from "@angular/common";
+import {ProductsRoutingModule} from "../../products-routing.module";
+import {SharedModule} from "../../../../shared/shared/shared.module";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('ProductFormDialogComponent', () => {
   let component: ProductFormDialogComponent;
@@ -8,7 +13,14 @@ describe('ProductFormDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductFormDialogComponent ]
+      declarations: [ ProductFormDialogComponent ],
+      imports: [
+        CommonModule,
+        ProductsRoutingModule,
+        SharedModule,
+        HttpClientModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 
@@ -17,7 +29,7 @@ describe('ProductFormDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should employee-form', () => {
+  it('should employee-form product-form', () => {
     expect(component).toBeTruthy();
   });
 });

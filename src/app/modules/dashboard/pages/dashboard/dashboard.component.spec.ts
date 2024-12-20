@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import {LineChartComponent} from "../../components/line-chart/line-chart.component";
+import {TopProductsTableComponent} from "../../components/top-products-table/top-products-table.component";
+import {TopCustomersTableComponent} from "../../components/top-customers-table/top-customers-table.component";
+import {CardItemComponent} from "../../components/card-item/card-item.component";
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,7 +12,8 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ DashboardComponent, LineChartComponent, TopProductsTableComponent, TopCustomersTableComponent, CardItemComponent ],
+      imports: []
     })
     .compileComponents();
 
@@ -17,7 +22,7 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should employee-form', () => {
+  it('should employee-form dashboard', () => {
     expect(component).toBeTruthy();
   });
 });

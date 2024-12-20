@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdateStockComponent } from './update-stock.component';
+import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "../../../../shared/shared/shared.module";
+import {CommonModule} from "@angular/common";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('UpdateStockComponent', () => {
   let component: UpdateStockComponent;
@@ -8,7 +12,8 @@ describe('UpdateStockComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdateStockComponent ]
+      declarations: [ UpdateStockComponent ],
+      imports: [HttpClientModule, SharedModule, BrowserAnimationsModule]
     })
     .compileComponents();
 
@@ -17,7 +22,7 @@ describe('UpdateStockComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should employee-form', () => {
+  it('should employee-form updatestock', () => {
     expect(component).toBeTruthy();
   });
 });
