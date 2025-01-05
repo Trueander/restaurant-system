@@ -34,7 +34,7 @@ export class ProductsTableComponent implements OnInit, OnChanges{
   constructor(
     private productService: ProductService,
     private overlay: Overlay) {
-      
+
   }
 
   ngOnInit() {
@@ -72,7 +72,7 @@ export class ProductsTableComponent implements OnInit, OnChanges{
             this.productsAux = this.products
             this.paginatorResultAux = response;
           }
-          
+
         })
   }
 
