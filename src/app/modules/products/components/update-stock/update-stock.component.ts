@@ -19,7 +19,7 @@ export class UpdateStockComponent implements OnInit{
   filteredOptions$: Observable<Product[]> | undefined;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private productService: ProductService,
     private sweetAlertService: SweetAlertService) {
       this.filterControl = new FormControl<string | Product>('');
